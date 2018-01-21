@@ -66,4 +66,15 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function isTeacher()
+    {
+        foreach ($this->role()->get() as $role) {
+            if ($role->id == 3) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <title>
-    LaraQuiz - powered by QuickAdminPanel.com
+    在线考试系统 - powered by 林小四
 </title>
 
 <meta http-equiv="X-UA-Compatible"
@@ -34,6 +34,6 @@
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.standalone.min.css"/>
 
-<meta property="og:title" content="LaraQuiz - how well do you know Laravel?" />
+<meta property="og:title" content="在线考试系统 - how well do you know Laravel?" />
 <meta property="og:image" content="{{ asset('laraquiz.png') }}" />
-<meta property="og:description" content="Mini-project with Laravel Quiz. Powered by QuickAdminPanel.com code generator." />
+<!-- <meta property="og:description" content="Mini-project with Laravel Quiz. Powered by QuickAdminPanel.com code generator." /> -->

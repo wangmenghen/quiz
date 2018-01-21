@@ -20,7 +20,7 @@
                 </a>
             </li>
 
-            @if(Auth::user()->isAdmin())
+            @if(Auth::user()->isTeacher() || Auth::user()->isAdmin())
             <li class="{{ $request->segment(1) == 'topics' ? 'active' : '' }}">
                 <a href="{{ route('topics.index') }}">
                     <i class="fa fa-gears"></i>
@@ -39,6 +39,9 @@
                     <span class="title">@lang('quickadmin.questions-options.title')</span>
                 </a>
             </li>
+            @endif
+            
+            @if(Auth::user()->isAdmin())
             <li>
                 <a href="#">
                     <i class="fa fa-users"></i>
@@ -81,7 +84,7 @@
             </li>
         </ul>
 
-        <div class="text-center margin-top-20" style="color: white">
+        <!-- <div class="text-center margin-top-20" style="color: white">
             LaraQuiz is powered by
             <br />
             <a href="https://quickadminpanel.com" target="_blank">QuickAdminPanel.com</a>
@@ -91,7 +94,7 @@
             Feedback/questions?
             <br />
             <a href="mailto:info@laraveldaily.com" target="_blank">info@laraveldaily.com</a>
-        </div>
+        </div> -->
     </div>
 </div>
 {!! Form::open(['route' => 'auth.logout', 'style' => 'display:none;', 'id' => 'logout']) !!}

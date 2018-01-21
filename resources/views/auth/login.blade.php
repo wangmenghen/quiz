@@ -3,11 +3,11 @@
 @section('content')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h1 class="text-center" style="color: white">LaraQuiz</h1>
-            <h3 class="text-center" style="color: white">How well do you know Laravel?</h3>
+            <h1 class="text-center" style="color: white">在线考试系统</h1>
+            <!-- <h3 class="text-center" style="color: white">How well do you know Laravel?</h3> -->
             <br />
             <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+                <div class="panel-heading">登陆</div>
                 <div class="panel-body">
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
@@ -30,7 +30,7 @@
                                value="{{ csrf_token() }}">
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Email</label>
+                            <label class="col-md-4 control-label">邮箱</label>
 
                             <div class="col-md-6">
                                 <input type="email"
@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Password</label>
+                            <label class="col-md-4 control-label">密码</label>
 
                             <div class="col-md-6">
                                 <input type="password"
@@ -54,7 +54,7 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <label>
                                     <input type="checkbox"
-                                           name="remember">Remember me
+                                           name="remember">记住我
                                 </label>
                             </div>
                         </div>
@@ -63,17 +63,17 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit"
                                         class="btn btn-primary">
-                                    Login
+                                    登陆
                                 </button>
                                 <a href="{{ route('auth.register') }}"
                                         class="btn btn-default">
-                                    Register
+                                    注册
                                 </a>
                                 <br>
-                                <a href="{{ route('auth.password.reset') }}">Forgot password</a>
+                                <a href="{{ route('auth.password.reset') }}">忘记密码</a>
                                 <br>
                                 <br>
-                                Or login with:
+                                <!-- Or login with:
                                 <br>
                                 <a href="{{ route('oauth2google') }}"
                                         class="btn btn-info">
@@ -86,7 +86,7 @@
                                 <a href="{{ route('oauth2github') }}"
                                         class="btn btn-info">
                                     GitHub
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                     </form>

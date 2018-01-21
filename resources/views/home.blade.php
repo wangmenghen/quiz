@@ -4,17 +4,17 @@
     <div class="row">
         <div class="col-md-10">
             <div class="panel panel-default">
-                <div class="panel-heading">Welcome! Here are some numbers about LaraQuiz.</div>
+                <div class="panel-heading">Welcome! 下面是一些数据在考试系统中.</div>
 
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-3 text-center">
                             <h1>{{ $questions }}</h1>
-                            questions in our database
+                            在我们的数据库
                         </div>
                         <div class="col-md-3 text-center">
                             <h1>{{ $users }}</h1>
-                            users registered
+                            已注册用户数
                         </div>
                         <div class="col-md-3 text-center">
                             <h1>{{ $quizzes }}</h1>
@@ -22,12 +22,12 @@
                         </div>
                         <div class="col-md-3 text-center">
                             <h1>{{ number_format($average, 2) }} / 10</h1>
-                            average score
+                            平均分数
                         </div>
                     </div>
                 </div>
             </div>
-            <a href="{{ route('tests.index') }}" class="btn btn-success">Take a new quiz!</a>
+            <a href="{{ route('tests.index') }}" class="btn btn-success">开始一个新的考试!</a>
         </div>
     </div>
 @endsection
