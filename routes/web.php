@@ -43,4 +43,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('questions_options_mass_destroy', ['uses' => 'QuestionsOptionsController@massDestroy', 'as' => 'questions_options.mass_destroy']);
     Route::resource('results', 'ResultsController');
     Route::post('results_mass_destroy', ['uses' => 'ResultsController@massDestroy', 'as' => 'results.mass_destroy']);
+
+    Route::get('mult_questions', ['uses' => 'QuestionsOptionsController@multIndex', 'as' => 'questions_options.multIndex']);
+    Route::get('/create_mult_questions', 'QuestionsOptionsController@createMult');
+    Route::post('/store_mult_questions', ['uses' => 'QuestionsOptionsController@storeMult', 'as' => 'questions_options.storeMult']);
+    // Route::post('/store_mult_questions', 'QuestionsOptionsController@storeMult');
+
+    Route::post('/mult_questions_options_mass_destroy', ['uses' => 'QuestionsOptionsController@deleteMult', 'as' => 'questions_options.deleteMult']);
+    
 });

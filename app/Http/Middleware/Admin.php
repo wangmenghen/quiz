@@ -10,9 +10,9 @@ class Admin
 {
     public function handle($request, Closure $next, $guard = null)
     {
-        if (!Auth::user()->isAdmin()) {
-            return redirect()->back();
-        }
+        // if (!Auth::user()->isAdmin() || !Auth::user()->isTeacher()) {
+        //     return redirect()->back();
+        // }
 
         return $next($request);
     }

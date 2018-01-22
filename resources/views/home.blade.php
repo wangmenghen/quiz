@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-md-3 text-center">
                             <h1>{{ $quizzes }}</h1>
-                            quizzes taken
+                            已完成的考试
                         </div>
                         <div class="col-md-3 text-center">
                             <h1>{{ number_format($average, 2) }} / 10</h1>

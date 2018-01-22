@@ -39,6 +39,40 @@
                     <span class="title">@lang('quickadmin.questions-options.title')</span>
                 </a>
             </li>
+
+            <li>
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span class="title">试题题型管理</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="{{ $request->segment(1) == 'roles' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('questions_options.index') }}">
+                            <i class="fa fa-briefcase"></i>
+                            <span class="title">
+                                单选题
+                            </span>
+                        </a>
+                    </li>
+                    <li class="{{ $request->segment(1) == 'users' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('questions_options.multIndex') }}">
+                            <i class="fa fa-user"></i>
+                            <span class="title">
+                                多选题
+                            </span>
+                        </a>
+                    </li>
+                    <li class="{{ $request->segment(1) == 'user_actions' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('user_actions.index') }}">
+                            <i class="fa fa-th-list"></i>
+                            <span class="title">
+                                填空题
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             @endif
             
             @if(Auth::user()->isAdmin())
