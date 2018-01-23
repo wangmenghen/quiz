@@ -29,12 +29,15 @@
       href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css"/>
 <link rel="stylesheet"
       href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css"/>
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.css"/>
+<!-- <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.css"/> -->
 <!-- <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.standalone.min.css"/> -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" /> -->
+<link rel="stylesheet"
+      href="{{ url('quickadmin/css') }}/select2.css"/>
+<link rel="stylesheet"
+      href="{{ url('quickadmin/css') }}/jquery-ui-timepicker-addon.min.css"/>
 
 <meta property="og:title" content="在线考试系统 - how well do you know Laravel?" />
 <meta property="og:image" content="{{ asset('laraquiz.png') }}" />

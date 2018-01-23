@@ -78,8 +78,8 @@ class QuestionsController extends Controller
             // var_dump($corrects);
             // var_dump($request->input());
             // die();
-            $status = 0;
             foreach ($request->input() as $key => $value) {
+                $status = 0;
                 if(strpos($key, 'option') !== false && $value != '') {
                     foreach ($corrects as $correct) {
                         if ($correct == $key) {

@@ -92,8 +92,8 @@
                     </form>
                 </div>
             </div>
-            <div class="text-center" style="color: white">Created by <a href="http://laraveldaily.com">Laravel Daily Team</a></div>
-            <div class="text-center" style="color: white">Powered by <a href="https://quickadminpanel.com">QuickAdminPanel.com</a></div>
+            <!-- <div class="text-center" style="color: white">Created by <a href="http://laraveldaily.com">Laravel Daily Team</a></div>
+            <div class="text-center" style="color: white">Powered by <a href="https://quickadminpanel.com">QuickAdminPanel.com</a></div> -->
         </div>
     </div>
 @endsection

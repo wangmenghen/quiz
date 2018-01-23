@@ -20,7 +20,6 @@
                         <th>@lang('quickadmin.questions-options.fields.question')</th>
                         <th>@lang('quickadmin.questions-options.fields.option')</th>
                         <th>@lang('quickadmin.questions-options.fields.correct')</th>
-                        <th>题目类型</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>

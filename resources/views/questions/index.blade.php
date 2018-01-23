@@ -40,6 +40,9 @@
                                 @if ($question->type == 3)
                                     <td>填空</td>
                                 @endif
+                                @if ($question->type == null)
+                                    <td></td>
+                                @endif
                                 <td>
                                     <a href="{{ route('questions.show',[$question->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.view')</a>
                                     <a href="{{ route('questions.edit',[$question->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.edit')</a>
