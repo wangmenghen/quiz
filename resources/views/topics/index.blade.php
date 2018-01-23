@@ -28,6 +28,7 @@
                             <tr data-entry-id="{{ $topic->id }}">
                                 <td></td>
                                 <td>{{ $topic->title }}</td>
+                                
                                 <td>
                                     <a href="{{ route('topics.show',[$topic->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.view')</a>
                                     <a href="{{ route('topics.edit',[$topic->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.edit')</a>

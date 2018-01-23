@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUsersRequest;
 use App\Http\Requests\UpdateUsersRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -135,4 +136,9 @@ class UsersController extends Controller
         }
     }
 
+    public function userinfo()
+    {
+        $user = Auth::user();
+        return response()->json($user, 200);
+    }
 }

@@ -17,7 +17,17 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     <div class="form-group">
-                        <strong>Question {{ $i }}.<br />{!! nl2br($question->question_text) !!}</strong>
+                        <strong>题 {{ $i }}#.{!! nl2br($question->question_text) !!} 
+                        @if ($question->type == 1)
+                            (单选题)
+                        @endif
+                        @if ($question->type == 2)
+                            (多选题)
+                        @endif
+                        @if ($question->type == 3)
+                            (填空题)
+                        @endif
+                        </strong>
 
                         @if ($question->code_snippet != '')
                             <div class="code_snippet">{!! $question->code_snippet !!}</div>
@@ -27,6 +37,9 @@
                             type="hidden"
                             name="questions[{{ $i }}]"
                             value="{{ $question->id }}">
+                            <!-- 作答的题目id 和 回答的选项id -->
+                    <!-- 单选 -->
+                    @if ($question->type == 1) 
                     @foreach($question->options as $option)
                         <br>
                         <label class="radio-inline">
@@ -37,6 +50,21 @@
                             {{ $option->option }}
                         </label>
                     @endforeach
+                    @endif
+
+                    <!-- 多选 -->
+                    @if ($question->type == 2) 
+                    @foreach($question->options as $option)
+                        <br>
+                        <label class="radio-inline">
+                            <input
+                                type="checkbox"
+                                name="answers[{{ $question->id }}]"
+                                value="{{ $option->id }}">
+                            {{ $option->option }}
+                        </label>
+                    @endforeach
+                    @endif
                     </div>
                 </div>
             </div>

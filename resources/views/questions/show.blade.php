@@ -12,12 +12,36 @@
             <div class="row">
                 <div class="col-md-6">
                     <table class="table table-bordered table-striped">
-                        <tr><th>@lang('quickadmin.questions.fields.topic')</th>
-                    <td>{{ $question->topic->title or '' }}</td></tr><tr><th>@lang('quickadmin.questions.fields.question-text')</th>
-                    <td>{!! $question->question_text !!}</td></tr><tr><th>@lang('quickadmin.questions.fields.code-snippet')</th>
-                    <td>{!! $question->code_snippet !!}</td></tr><tr><th>@lang('quickadmin.questions.fields.answer-explanation')</th>
-                    <td>{!! $question->answer_explanation !!}</td></tr><tr><th>@lang('quickadmin.questions.fields.more-info-link')</th>
-                    <td>{{ $question->more_info_link }}</td></tr>
+                        <tr>
+                            <th>@lang('quickadmin.questions.fields.topic')</th>
+                            <td>{{ $question->topic->title or '' }}</td>
+                        </tr>
+                        <tr><th>@lang('quickadmin.questions.fields.question-text')</th>
+                            <td>{!! $question->question_text !!}</td>
+                        </tr>
+                        <tr><th>@lang('quickadmin.questions.fields.code-snippet')</th>
+                            <td>{!! $question->code_snippet !!}</td>
+                        </tr>
+                        <tr><th>@lang('quickadmin.questions.fields.answer-explanation')</th>
+                            <td>{!! $question->answer_explanation !!}</td>
+                        </tr>
+                        <tr><th>@lang('quickadmin.questions.fields.more-info-link')</th>
+                            <td>{{ $question->more_info_link }}</td>
+                        </tr>
+                        <tr>
+                            <th>类型</th>
+                            <td>
+                                @if ($question->type == 1)
+                                    单选
+                                @endif
+                                @if ($question->type == 2)
+                                    多选
+                                @endif
+                                @if ($question->type == 3)
+                                    填空
+                                @endif
+                            </td>
+                        </tr>
                     </table>
                 </div>
             </div>

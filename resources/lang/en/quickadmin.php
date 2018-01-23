@@ -66,9 +66,9 @@ return [
 		'title' => '试题题目',
 		'fields' => [
 			'topic' => '测试库',
-			'question-text' => 'Question text',
+			'question-text' => '题目描述',
 			'code-snippet' => 'Code snippet',
-			'answer-explanation' => 'Answer explanation',
+			'answer-explanation' => '答案解析',
 			'more-info-link' => '关于更多',
 		],
 	],

@@ -12,7 +12,7 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('topic_id', 'Topic*', ['class' => 'control-label']) !!}
+                    {!! Form::label('topic_id', '试卷*', ['class' => 'control-label']) !!}
                     {!! Form::select('topic_id', $topics, old('topic_id'), ['class' => 'form-control']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('topic_id'))
@@ -24,7 +24,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('question_text', 'Question text*', ['class' => 'control-label']) !!}
+                    {!! Form::label('question_text', '题目描述*', ['class' => 'control-label']) !!}
                     {!! Form::textarea('question_text', old('question_text'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('question_text'))
@@ -36,7 +36,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('option1', 'Option #1', ['class' => 'control-label']) !!}
+                    {!! Form::label('option1', '选项 #1', ['class' => 'control-label']) !!}
                     {!! Form::text('option1', old('option1'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('option1'))
@@ -48,7 +48,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('option2', 'Option #2', ['class' => 'control-label']) !!}
+                    {!! Form::label('option2', '选项 #2', ['class' => 'control-label']) !!}
                     {!! Form::text('option2', old('option2'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('option2'))
@@ -60,7 +60,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('option3', 'Option #3', ['class' => 'control-label']) !!}
+                    {!! Form::label('option3', '选项 #3', ['class' => 'control-label']) !!}
                     {!! Form::text('option3', old('option3'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('option3'))
@@ -72,7 +72,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('option4', 'Option #4', ['class' => 'control-label']) !!}
+                    {!! Form::label('option4', '选项 #4', ['class' => 'control-label']) !!}
                     {!! Form::text('option4', old('option4'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('option4'))
@@ -84,7 +84,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('option5', 'Option #5', ['class' => 'control-label']) !!}
+                    {!! Form::label('option5', '选项 #5', ['class' => 'control-label']) !!}
                     {!! Form::text('option5', old('option5'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('option5'))
@@ -96,7 +96,18 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('correct', 'Correct', ['class' => 'control-label']) !!}
+                    <label class="" for="">题目类型</label>
+                    
+                    <select id ="type" class="js-example-basic-single" name="type" style="width:100px">
+                        <option value="1">单选</option>
+                        <option value="2">多选</option>
+                        <option value="3">填空题</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" id="simple">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('correct', '正确选项(单选)', ['class' => 'control-label']) !!}
                     {!! Form::select('correct', $correct_options, old('correct'), ['class' => 'form-control']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('correct'))
@@ -104,6 +115,18 @@
                             {{ $errors->first('correct') }}
                         </p>
                     @endif
+                </div>
+            </div>
+            <div class="row hide" id="mult">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('correct', '正确选项(多选/两个答案)', ['class' => 'control-label']) !!}
+                    <select id ="mulType" class="js-example-basic-single" name="correct[]" multiple="multiple" style="width:100%">
+                        <option value="option1">选项#1</option>
+                        <option value="option2">选项#2</option>
+                        <option value="option3">选项#3</option>
+                        <option value="option4">选项#4</option>
+                        <option value="option5">选项#5</option>
+                    </select>
                 </div>
             </div>
             <div class="row">
@@ -120,7 +143,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('answer_explanation', 'Answer explanation*', ['class' => 'control-label']) !!}
+                    {!! Form::label('answer_explanation', '答案解析*', ['class' => 'control-label']) !!}
                     {!! Form::textarea('answer_explanation', old('answer_explanation'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('answer_explanation'))
@@ -132,7 +155,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('more_info_link', 'More info link', ['class' => 'control-label']) !!}
+                    {!! Form::label('more_info_link', '相关链接', ['class' => 'control-label']) !!}
                     {!! Form::text('more_info_link', old('more_info_link'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('more_info_link'))

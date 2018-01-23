@@ -50,5 +50,5 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::post('/store_mult_questions', 'QuestionsOptionsController@storeMult');
 
     Route::post('/mult_questions_options_mass_destroy', ['uses' => 'QuestionsOptionsController@deleteMult', 'as' => 'questions_options.deleteMult']);
-    
+    Route::get('/userinfo', 'UsersController@userinfo');
 });

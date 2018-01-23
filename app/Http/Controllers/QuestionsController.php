@@ -23,7 +23,7 @@ class QuestionsController extends Controller
     public function index()
     {
         $questions = Question::all();
-
+   
         return view('questions.index', compact('questions'));
     }
 
@@ -59,18 +59,43 @@ class QuestionsController extends Controller
     {
 
         $question = Question::create($request->all());
-
-        foreach ($request->input() as $key => $value) {
-            if(strpos($key, 'option') !== false && $value != '') {
-                $status = $request->input('correct') == $key ? 1 : 0;
-                QuestionsOption::create([
-                    'question_id' => $question->id,
-                    'option'      => $value,
-                    'correct'     => $status
-                ]);
+        // var_dump($request->all());
+        // die($request->all());
+        if ($request->type == 1) {
+            foreach ($request->input() as $key => $value) {
+                if(strpos($key, 'option') !== false && $value != '') {
+                    $status = $request->input('correct') == $key ? 1 : 0;
+                    QuestionsOption::create([
+                        'question_id' => $question->id,
+                        'option'      => $value,
+                        'correct'     => $status,
+                        'type'        => $question->type
+                    ]);
+                }
+            }
+        } else if ($request->type == 2) {
+            $corrects = $request->input('correct');
+            // var_dump($corrects);
+            // var_dump($request->input());
+            // die();
+            $status = 0;
+            foreach ($request->input() as $key => $value) {
+                if(strpos($key, 'option') !== false && $value != '') {
+                    foreach ($corrects as $correct) {
+                        if ($correct == $key) {
+                            $status = 1;
+                        }
+                    }
+                    QuestionsOption::create([
+                        'question_id' => $question->id,
+                        'option'      => $value,
+                        'correct'     => $status,
+                        'type'        => $question->type
+                    ]);
+                }
             }
         }
-
+        
         return redirect()->route('questions.index');
     }
 

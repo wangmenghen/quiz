@@ -13,9 +13,8 @@
         </a>
 
         <div class="top-menu">
-            <ul class="nav navbar-nav pull-right">
-
-            </ul>
+            <!-- <ul class="nav navbar-nav pull-right"></ul> -->
+            <span id="role"></span>
         </div>
     </div>
 </div>

@@ -33,7 +33,7 @@ $(document).ready(function () {
     });
 
     if (typeof window.route_mass_crud_entries_destroy != 'undefined') {
-        $('.datatable').siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="btn btn-xs btn-danger js-delete-selected" onclick="return confirm(\'Are you sure\');" style="margin-top:0.755em;margin-left: 20px;">Delete selected</a>');
+        $('.datatable').siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="btn btn-xs btn-danger js-delete-selected" onclick="return confirm(\'确认\');" style="margin-top:0.755em;margin-left: 20px;">删除</a>');
     }
 
     $(document).on('click', '.js-delete-selected', function() {
