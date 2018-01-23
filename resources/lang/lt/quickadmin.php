@@ -15,13 +15,76 @@ return [
 	'back_to_list' => 'Grįžti į sąrašą',
 	'dashboard' => 'Pagrindinis',
 	'delete' => 'Trinti',
-	'quickadmin_title' => 'LaraQuiz',
-		'user-management' => [		'title' => 'User Management',		'fields' => [		],	],
-		'roles' => [		'title' => 'Roles',		'fields' => [			'title' => 'Title',		],	],
-		'users' => [		'title' => 'Users',		'fields' => [			'name' => 'Name',			'email' => 'Email',			'password' => 'Password',			'role' => 'Role',			'remember-token' => 'Remember token',		],	],
-		'user-actions' => [		'title' => 'User actions',		'fields' => [			'user' => 'User',			'action' => 'Action',			'action-model' => 'Action model',			'action-id' => 'Action id',		],	],
-		'topics' => [		'title' => 'Topics',		'fields' => [			'title' => 'Title',		],	],
-		'questions' => [		'title' => 'Questions',		'fields' => [			'topic' => 'Topic',			'question-text' => 'Question text',			'code-snippet' => 'Code snippet',			'answer-explanation' => 'Answer explanation',			'more-info-link' => 'More info link',		],	],
-		'questions-options' => [		'title' => 'Questions Options',		'fields' => [			'question' => 'question',			'option' => 'Option',			'correct' => 'Correct',		],	],
-		'results' => [		'title' => 'Results',		'fields' => [			'user' => 'User',			'question' => 'Question',			'correct' => 'Correct',			'date' => 'Date',		],	],
+	'quickadmin_title' => '在线考试系统',
+	
+	'user-management' => [
+		'title' => 'User Management',
+		'fields' => [
+		],
+	],
+	
+	'roles' => [
+		'title' => 'Roles',
+		'fields' => [
+			'title' => 'Title',
+		],
+	],
+	
+	'users' => [
+		'title' => 'Users',
+		'fields' => [
+			'name' => 'Name',
+			'email' => 'Email',
+			'password' => 'Password',
+			'role' => 'Role',
+			'remember-token' => 'Remember token',
+		],
+	],
+	
+	'user-actions' => [
+		'title' => 'User actions',
+		'fields' => [
+			'user' => 'User',
+			'action' => 'Action',
+			'action-model' => 'Action model',
+			'action-id' => 'Action id',
+		],
+	],
+	
+	'topics' => [
+		'title' => 'Topics',
+		'fields' => [
+			'title' => 'Title',
+		],
+	],
+	
+	'questions' => [
+		'title' => 'Questions',
+		'fields' => [
+			'topic' => 'Topic',
+			'question-text' => 'Question text',
+			'code-snippet' => 'Code snippet',
+			'answer-explanation' => 'Answer explanation',
+			'more-info-link' => 'More info link',
+		],
+	],
+	
+	'questions-options' => [
+		'title' => 'Questions Options',
+		'fields' => [
+			'question' => 'question',
+			'option' => 'Option',
+			'correct' => 'Correct',
+		],
+	],
+	
+	'results' => [
+		'title' => 'Results',
+		'fields' => [
+			'user' => 'User',
+			'question' => 'Question',
+			'correct' => 'Correct',
+			'date' => 'Date',
+		],
+	],
 ];

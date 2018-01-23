@@ -6,7 +6,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            @lang('quickadmin.quiz')
+            <!-- @lang('quickadmin.quiz') -->
         </div>
         <?php //dd($questions) ?>
     @if(count($questions) > 0)

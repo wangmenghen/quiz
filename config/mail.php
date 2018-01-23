@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => 'info@quickadminpanel.com',
-        'name' => 'Quick Admin Panel',
+        'address' => '734452449@qq.com',
+        'name' => 'test',
     ],
 
     /*

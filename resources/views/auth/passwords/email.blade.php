@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Reset password</div>
+                <div class="panel-heading">重置密码</div>
                 <div class="panel-body">
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
@@ -33,7 +33,7 @@
                                value="{{ csrf_token() }}">
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Email</label>
+                            <label class="col-md-4 control-label">请输入注册的邮箱</label>
 
                             <div class="col-md-6">
                                 <input type="email"
@@ -48,7 +48,7 @@
                                 <button type="submit"
                                         class="btn btn-primary"
                                         style="margin-right: 15px;">
-                                    Reset password
+                                    重置密码
                                 </button>
                             </div>
                         </div>

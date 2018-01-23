@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Reset password</div>
+                <div class="panel-heading">重置密码</div>
                 <div class="panel-body">
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Password</label>
+                            <label class="col-md-4 control-label">请输入密码</label>
 
                             <div class="col-md-6">
                                 <input type="password"
@@ -49,7 +49,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Confirm password</label>
+                            <label class="col-md-4 control-label">确认密码</label>
 
                             <div class="col-md-6">
                                 <input type="password"
@@ -63,7 +63,7 @@
                                 <button type="submit"
                                         class="btn btn-primary"
                                         style="margin-right: 15px;">
-                                    Reset password
+                                    重置密码
                                 </button>
                             </div>
                         </div>

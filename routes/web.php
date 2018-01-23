@@ -53,4 +53,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/userinfo', 'UsersController@userinfo');
     Route::get('/showtest', 'TopicsController@showtest');
     Route::get('/testIndex/{id}', 'TestsController@testIndex');
+
+    Route::get('mail/send','MailController@send');
 });
