@@ -13,7 +13,7 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('question_id', 'question*', ['class' => 'control-label']) !!}
+                    {!! Form::label('question_id', '所属问题*', ['class' => 'control-label']) !!}
                     {!! Form::select('question_id', $questions, old('question_id'), ['class' => 'form-control']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('question_id'))

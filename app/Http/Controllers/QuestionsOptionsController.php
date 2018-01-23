@@ -22,7 +22,7 @@ class QuestionsOptionsController extends Controller
      */
     public function index()
     {
-        $questions_options = QuestionsOption::all();
+        $questions_options = QuestionsOption::where('type', 1)->get();
         // var_dump($questions_options);
         return view('questions_options.index', compact('questions_options'));
     }

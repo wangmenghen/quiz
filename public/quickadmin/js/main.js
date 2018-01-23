@@ -141,5 +141,12 @@ $(document).ready(function () {
             e.preventDefault();
         }
     });
-
+    var checkbox = $('#multques')
+    $("#multques input:checkbox[name=check_name]:checked'").each(function(i){  
+        if(0==i){  
+            adIds = $(this).val();  
+        }else{  
+            adIds += (","+$(this).val());  
+        }  
+    });  
 });

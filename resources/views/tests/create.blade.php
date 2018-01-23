@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.laravel-quiz')</h3>
+    <h3 class="page-title">{{$title}} 考试</h3>
     {!! Form::open(['method' => 'POST', 'route' => ['tests.store']]) !!}
 
     <div class="panel panel-default">
@@ -56,6 +56,7 @@
                     @if ($question->type == 2) 
                     @foreach($question->options as $option)
                         <br>
+                        <input type="hidden" id='hidMult'>
                         <label class="radio-inline">
                             <input
                                 type="checkbox"

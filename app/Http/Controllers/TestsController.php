@@ -19,11 +19,13 @@ class TestsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($typeId)
     {
         // $topics = Topic::inRandomOrder()->limit(10)->get();
 
-        $questions = Question::inRandomOrder()->limit(10)->get();
+        // $questions = Question::inRandomOrder()->limit(10)->get();
+
+        $questions = Question::where('topic_id', 2)->inRandomOrder()->limit(10)->get();
         foreach ($questions as &$question) {
             $question->options = QuestionsOption::where('question_id', $question->id)->inRandomOrder()->get();
         }
@@ -55,7 +57,8 @@ class TestsController extends Controller
             'user_id' => Auth::id(),
             'result'  => $result,
         ]);
-
+        // var_dump($request->input());
+        // die();
         foreach ($request->input('questions', []) as $key => $question) {
             $status = 0;
 
@@ -77,5 +80,19 @@ class TestsController extends Controller
         $test->update(['result' => $result]);
 
         return redirect()->route('results.show', [$test->id]);
+    }
+    
+    public function testIndex($typeId)
+    {
+        // var_dump($typeId);
+        // die();
+        $topic = Topic::where('id', $typeId)->first();
+        $title = $topic->title;
+        $questions = Question::where('topic_id', $typeId)->inRandomOrder()->limit(10)->get();
+        foreach ($questions as &$question) {
+            $question->options = QuestionsOption::where('question_id', $question->id)->inRandomOrder()->get();
+        }
+
+        return view('tests.create', compact('questions', 'title'));
     }
 }

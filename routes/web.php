@@ -51,4 +51,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/mult_questions_options_mass_destroy', ['uses' => 'QuestionsOptionsController@deleteMult', 'as' => 'questions_options.deleteMult']);
     Route::get('/userinfo', 'UsersController@userinfo');
+    Route::get('/showtest', 'TopicsController@showtest');
+    Route::get('/testIndex/{id}', 'TestsController@testIndex');
 });

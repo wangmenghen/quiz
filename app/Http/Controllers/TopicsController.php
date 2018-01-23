@@ -123,4 +123,10 @@ class TopicsController extends Controller
         }
     }
 
+    public function showtest()
+    {
+        $topics = Topic::all();
+
+        return view('tests.show', compact('topics'));
+    }
 }

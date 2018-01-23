@@ -7,12 +7,15 @@
             data-slide-speed="200">
 
             <li class="{{ $request->segment(1) == 'tests' ? 'active' : '' }}">
-                <a href="{{ route('tests.index') }}">
+                <!-- <a href="{{ route('tests.index') }}">
+                    <i class="fa fa-gears"></i>
+                    <span class="title">@lang('quickadmin.test.new')</span>
+                </a> -->
+                <a href="/showtest">
                     <i class="fa fa-gears"></i>
                     <span class="title">@lang('quickadmin.test.new')</span>
                 </a>
             </li>
-
             <li class="{{ $request->segment(1) == 'results' ? 'active' : '' }}">
                 <a href="{{ route('results.index') }}">
                     <i class="fa fa-gears"></i>
@@ -63,14 +66,14 @@
                             </span>
                         </a>
                     </li>
-                    <li class="{{ $request->segment(1) == 'user_actions' ? 'active active-sub' : '' }}">
+                    <!-- <li class="{{ $request->segment(1) == 'user_actions' ? 'active active-sub' : '' }}">
                         <a href="{{ route('user_actions.index') }}">
                             <i class="fa fa-th-list"></i>
                             <span class="title">
                                 填空题
                             </span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </li>
             @endif

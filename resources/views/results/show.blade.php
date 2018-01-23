@@ -31,7 +31,7 @@
                 @foreach($results as $result)
                     <table class="table table-bordered table-striped">
                         <tr class="test-option{{ $result->correct ? '-true' : '-false' }}">
-                            <th style="width: 10%">Question #{{ $i }}</th>
+                            <th style="width: 10%">题 #{{ $i }}</th>
                             <th>{{ $result->question->question_text or '' }}</th>
                         </tr>
                         @if ($result->question->code_snippet != '')
@@ -41,27 +41,27 @@
                             </tr>
                         @endif
                         <tr>
-                            <td>Options</td>
+                            <td>选项</td>
                             <td>
                                 <ul>
                                 @foreach($result->question->options as $option)
                                     <li style="@if ($option->correct == 1) font-weight: bold; @endif
                                         @if ($result->option_id == $option->id) text-decoration: underline @endif">{{ $option->option }}
-                                        @if ($option->correct == 1) <em>(correct answer)</em> @endif
-                                        @if ($result->option_id == $option->id) <em>(your answer)</em> @endif
+                                        @if ($option->correct == 1) <em>(正确答案)</em> @endif
+                                        @if ($result->option_id == $option->id) <em>(你提交的答案)</em> @endif
                                     </li>
                                 @endforeach
                                 </ul>
                             </td>
                         </tr>
                         <tr>
-                            <td>Answer Explanation</td>
+                            <td>答案解析</td>
                             <td>
                             {!! $result->question->answer_explanation  !!}
                                 @if ($result->question->more_info_link != '')
                                     <br>
                                     <br>
-                                    Read more:
+                                    查看贡多:
                                     <a href="{{ $result->question->more_info_link }}" target="_blank">{{ $result->question->more_info_link }}</a>
                                 @endif
                             </td>
@@ -74,8 +74,8 @@
 
             <p>&nbsp;</p>
 
-            <a href="{{ route('tests.index') }}" class="btn btn-default">Take another quiz</a>
-            <a href="{{ route('results.index') }}" class="btn btn-default">See all my results</a>
+            <a href="/showtest" class="btn btn-default">开始下一个考试</a>
+            <a href="{{ route('results.index') }}" class="btn btn-default">查看我全的考试结果</a>
         </div>
     </div>
 @stop

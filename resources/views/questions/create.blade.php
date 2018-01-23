@@ -129,7 +129,7 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('code_snippet', 'Code snippet', ['class' => 'control-label']) !!}
                     {!! Form::textarea('code_snippet', old('code_snippet'), ['class' => 'form-control ', 'placeholder' => '']) !!}
@@ -140,7 +140,7 @@
                         </p>
                     @endif
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('answer_explanation', '答案解析*', ['class' => 'control-label']) !!}
