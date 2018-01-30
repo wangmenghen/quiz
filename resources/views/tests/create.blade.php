@@ -60,7 +60,7 @@
                         <label class="radio-inline">
                             <input
                                 type="checkbox"
-                                name="answers[{{ $question->id }}]"
+                                name="answersMult-{{ $question->id }}[]"
                                 value="{{ $option->id }}">
                             {{ $option->option }}
                         </label>
