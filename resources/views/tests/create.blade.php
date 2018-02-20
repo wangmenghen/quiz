@@ -28,18 +28,19 @@
                             (填空题)
                         @endif
                         </strong>
-
+                        <br/>
                         @if ($question->code_snippet != '')
                             <div class="code_snippet">{!! $question->code_snippet !!}</div>
                         @endif
 
+                        
+                            <!-- 作答的题目id 和 回答的选项id -->
+                    <!-- 单选 -->
+                    @if ($question->type == 1) 
                         <input
                             type="hidden"
                             name="questions[{{ $i }}]"
                             value="{{ $question->id }}">
-                            <!-- 作答的题目id 和 回答的选项id -->
-                    <!-- 单选 -->
-                    @if ($question->type == 1) 
                     @foreach($question->options as $option)
                         <br>
                         <label class="radio-inline">
@@ -54,9 +55,11 @@
 
                     <!-- 多选 -->
                     @if ($question->type == 2) 
+                        <input type="hidden" id='hidMult' 
+                               name="questionsMult[{{ $i }}]"
+                               value="{{ $question->id }}">
                     @foreach($question->options as $option)
                         <br>
-                        <input type="hidden" id='hidMult'>
                         <label class="radio-inline">
                             <input
                                 type="checkbox"

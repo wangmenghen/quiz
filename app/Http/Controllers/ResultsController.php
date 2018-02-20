@@ -46,10 +46,21 @@ class ResultsController extends Controller
             $results = TestAnswer::where('test_id', $id)
                 ->with('question')
                 ->with('question.options')
-                ->get()
-            ;
+                ->get();
         }
-
+        foreach ($results as $key => $result) {
+            if ($result->question->type == 2) {
+                $submits = explode(",", $result->submit_option);
+                $options = $result->question->options;
+                foreach ($options as $index => $option) {
+                    foreach ($submits as $submit) {
+                        if ($submit == $option->id) {
+                            $results[$key]->question->options[$index]['submit'] = 1;
+                        }
+                    }
+                }
+            }
+        }
         return view('results.show', compact('test', 'results'));
     }
 }

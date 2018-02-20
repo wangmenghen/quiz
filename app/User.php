@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Hash;
 use Mail;
+use App\Notifications\ResetPasswordNotification;
 
 /**
  * Class User
@@ -76,5 +77,10 @@ class User extends Authenticatable
         }
 
         return false;
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 }

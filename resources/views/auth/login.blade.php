@@ -11,7 +11,7 @@
                 <div class="panel-body">
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
-                            <strong>Whoops!</strong> There were problems with input:
+                            <strong>Whoops!</strong> 您的输入有问题:
                             <br><br>
                             <ul>
                                 @foreach ($errors->all() as $error)

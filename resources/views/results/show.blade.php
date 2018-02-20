@@ -29,6 +29,7 @@
                     </table>
                 <?php $i = 1 ?>
                 @foreach($results as $result)
+                <br>
                     <table class="table table-bordered table-striped">
                         <tr class="test-option{{ $result->correct ? '-true' : '-false' }}">
                             <th style="width: 10%">题 #{{ $i }}</th>
@@ -45,11 +46,20 @@
                             <td>
                                 <ul>
                                 @foreach($result->question->options as $option)
-                                    <li style="@if ($option->correct == 1) font-weight: bold; @endif
-                                        @if ($result->option_id == $option->id) text-decoration: underline @endif">{{ $option->option }}
-                                        @if ($option->correct == 1) <em>(正确答案)</em> @endif
-                                        @if ($result->option_id == $option->id) <em>(你提交的答案)</em> @endif
-                                    </li>
+                                    @if ($result->question->type == 1)
+                                        <li style="@if ($option->correct == 1) font-weight: bold; @endif
+                                            @if ($result->option_id == $option->id) text-decoration: underline @endif">{{ $option->option }}
+                                            @if ($option->correct == 1) <em>(正确答案)</em> @endif
+                                            @if ($result->option_id == $option->id) <em>(你提交的答案)</em> @endif
+                                        </li>
+                                    @endif
+                                    @if ($result->question->type == 2)
+                                        <li style="@if ($option->correct == 1) font-weight: bold; @endif
+                                            @if ($option->submit) text-decoration: underline @endif">{{ $option->option }}
+                                            @if ($option->correct == 1) <em>(正确答案)</em> @endif
+                                            @if ($option->submit) <em>(你提交的答案)</em> @endif
+                                        </li>
+                                    @endif
                                 @endforeach
                                 </ul>
                             </td>
@@ -61,7 +71,7 @@
                                 @if ($result->question->more_info_link != '')
                                     <br>
                                     <br>
-                                    查看贡多:
+                                    查看更多:
                                     <a href="{{ $result->question->more_info_link }}" target="_blank">{{ $result->question->more_info_link }}</a>
                                 @endif
                             </td>

@@ -77,6 +77,38 @@ class TestsController extends Controller
             ]);
         }
 
+        foreach ($request->input('questionsMult', []) as $key => $question) {
+            $status = [];
+            $correct = 1;
+            $multQuestionsOptions = QuestionsOption::find($request->input('answersMult-'.$question));
+            foreach ($request->input('answersMult-'.$question) as $ans => $answer) {
+                $status[$ans] = 0;
+                foreach ($multQuestionsOptions as $value => $multQuestionsOption) {
+                    $correctMult = [];
+                    if ($multQuestionsOption->correct) {
+                        if ($answer != null && $multQuestionsOption->id == $answer) {
+                            $status[$ans] = 1;
+                        }
+                    }
+                } 
+            }
+            foreach ($status as $index) {
+                if (!$index) $correct = 0;
+            }
+            if ($correct) {
+                $result++;
+            }
+            // var_dump(implode(',', $request->input('answersMult-'.$question)));
+            TestAnswer::create([
+                'user_id'       => Auth::id(),
+                'test_id'       => $test->id,
+                'question_id'   => $question,
+                'option_id'     => 0,
+                'correct'       => $correct,
+                'submit_option' => implode(',', $request->input('answersMult-'.$question))
+            ]);
+        }
+        
         $test->update(['result' => $result]);
 
         return redirect()->route('results.show', [$test->id]);
