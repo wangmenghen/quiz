@@ -83,10 +83,11 @@
         </div>
     @endif
     </div>
-    <!-- {!! Form::submit(trans('quickadmin.submit_quiz'), ['class' => 'btn btn-danger quiz_submit']) !!} -->
+    <!-- <button id="form-submit" style="display:none"></button> -->
+    <!-- <a class="btn btn-danger quiz_submit">提交</a> -->
+    {!! Form::submit(trans('quickadmin.submit_quiz'), ['class' => 'btn btn-danger quiz_submit']) !!}
     <!-- {!! Form::close() !!} -->
     </form>
-    <button class="btn btn-danger quiz_submit">提交</button>
 @stop
 
 @section('javascript')
@@ -109,16 +110,14 @@
         })
         /*时间倒计时*/
         var sec = 10,min = 1;
-        console.log('::::::', localStorage.getItem('interrupt'))
-        console.log('what:', typeof parseInt(localStorage.getItem('interrupt')))
-        if (parseInt(localStorage.getItem('interrupt')) === 0) {
-            console.log('setting')
-            console.log('sec', localStorage);
-            sec = localStorage.getItem('sec');
-            min = localStorage.getItem('min');
-            console.log('sec::', sec);
-            console.log('min::', min);
-        }
+        // if (parseInt(localStorage.getItem('interrupt')) === 0) {
+        //     console.log('setting')
+        //     console.log('sec', localStorage);
+        //     sec = localStorage.getItem('sec');
+        //     min = localStorage.getItem('min');
+        //     console.log('sec::', sec);
+        //     console.log('min::', min);
+        // }
         var format = function(str) {
             if(parseInt(str) < 10) {
                 return "0" + str;
@@ -148,19 +147,19 @@
                 $('.quiz_submit').click();
             }
         }
-        $(window).bind('beforeunload',function(){
-            localStorage.setItem('min', min);
-            localStorage.setItem('sec', sec);
-            localStorage.setItem('interrupt', 1);
-            return '您输入的内容尚未保存，确定离开此页面吗？';
-        });
-        $('.quiz_submit').click(function() {
-            console.log('clear');
-            localStorage.setItem('min', 0);
-            localStorage.setItem('sec', 0);
-            localStorage.setItem('interrupt', 0);
-            console.log('tijiao');
-        })
+        // $(window).bind('beforeunload',function(){
+        //     localStorage.setItem('min', min);
+        //     localStorage.setItem('sec', sec);
+        //     localStorage.setItem('interrupt', 1);
+        //     return '您输入的内容尚未保存，确定离开此页面吗？';
+        // });
+        // $('.quiz_submit').click(function() {
+        //     console.log('clear');
+        //     localStorage.setItem('min', 0);
+        //     localStorage.setItem('sec', 0);
+        //     localStorage.setItem('interrupt', 0);
+        //     $('form').submit();
+        // })
         // window.onbeforeunload = function() {
         //     localStorage.setItem('min', min);
         //     localStorage.setItem('sec', sec);
