@@ -1,0 +1,34 @@
+.countdown {
+	background: #005DAC;
+	text-align: center;
+	position: fixed;
+	top: 80px;
+	right: 120px;
+	width: 161px;
+    height: 161px;
+    border-radius: 50% !important;
+	-webkit-border-radius: 50% !important;
+	-moz-border-radius: 50% !important;
+}
+.countdown .mtp {
+	margin-top: 50px;
+}
+.countdown .line_height34 {
+	line-height: 34px;
+}
+.countdown .countdown_text {
+	color: white;
+	margin-top: 55px;
+	font-size: 20px;
+	line-height: 29px;
+	letter-spacing: 3px;
+}
+.countdown #countdown_time {
+	color: #F8B62C;
+	font-size: 25px;
+}
+
+.time-over__p {
+    margin-top: 40%;
+    margin-left: 10%;
+}

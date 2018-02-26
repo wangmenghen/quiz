@@ -39,6 +39,8 @@
 <link rel="stylesheet"
       href="{{ url('quickadmin/css') }}/jquery-ui-timepicker-addon.min.css"/>
 
+<link rel="stylesheet" href="{{ url('quickadmin/css') }}/custome.css"/>
+
 <meta property="og:title" content="在线考试系统 - how well do you know Laravel?" />
 <meta property="og:image" content="{{ asset('laraquiz.png') }}" />
 <!-- <meta property="og:description" content="Mini-project with Laravel Quiz. Powered by QuickAdminPanel.com code generator." /> -->

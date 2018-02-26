@@ -25,7 +25,7 @@ class TestsController extends Controller
 
         // $questions = Question::inRandomOrder()->limit(10)->get();
 
-        $questions = Question::where('topic_id', 2)->inRandomOrder()->limit(10)->get();
+        $questions = Question::where('topic_id', $typeId)->inRandomOrder()->limit(30)->get();
         foreach ($questions as &$question) {
             $question->options = QuestionsOption::where('question_id', $question->id)->inRandomOrder()->get();
         }
@@ -59,6 +59,7 @@ class TestsController extends Controller
         ]);
         // var_dump($request->input());
         // die();
+        // 处理单选
         foreach ($request->input('questions', []) as $key => $question) {
             $status = 0;
 
@@ -77,35 +78,41 @@ class TestsController extends Controller
             ]);
         }
 
+        // 处理多选
         foreach ($request->input('questionsMult', []) as $key => $question) {
             $status = [];
             $correct = 1;
             $multQuestionsOptions = QuestionsOption::find($request->input('answersMult-'.$question));
-            foreach ($request->input('answersMult-'.$question) as $ans => $answer) {
-                $status[$ans] = 0;
-                foreach ($multQuestionsOptions as $value => $multQuestionsOption) {
-                    $correctMult = [];
-                    if ($multQuestionsOption->correct) {
-                        if ($answer != null && $multQuestionsOption->id == $answer) {
-                            $status[$ans] = 1;
+            if ($request->input('answersMult-'.$question)) {
+                foreach ($request->input('answersMult-'.$question) as $ans => $answer) {
+                    $status[$ans] = 0;
+                    foreach ($multQuestionsOptions as $value => $multQuestionsOption) {
+                        $correctMult = [];
+                        if ($multQuestionsOption->correct) {
+                            if ($answer != null && $multQuestionsOption->id == $answer) {
+                                $status[$ans] = 1;
+                            }
                         }
-                    }
-                } 
-            }
-            foreach ($status as $index) {
-                if (!$index) $correct = 0;
-            }
-            if ($correct) {
-                $result++;
+                    } 
+                }
+                foreach ($status as $index) {
+                    if (!$index) $correct = 0;
+                }
+                if ($correct) {
+                    $result++;
+                }
+            } else {
+                $correct = 0;
             }
             // var_dump(implode(',', $request->input('answersMult-'.$question)));
+            $submitOption = $request->input('answersMult-'.$question) ? implode(',', $request->input('answersMult-'.$question)) : 0;
             TestAnswer::create([
                 'user_id'       => Auth::id(),
                 'test_id'       => $test->id,
                 'question_id'   => $question,
                 'option_id'     => 0,
                 'correct'       => $correct,
-                'submit_option' => implode(',', $request->input('answersMult-'.$question))
+                'submit_option' => $submitOption
             ]);
         }
         
@@ -126,5 +133,11 @@ class TestsController extends Controller
         }
 
         return view('tests.create', compact('questions', 'title'));
+    }
+
+    public function saveTime(Request $request)
+    {
+        var_dump($request->input('min'));
+        var_dump($request->input('sec'));
     }
 }
