@@ -17,15 +17,16 @@
                 <tbody>
                     @if (count($topics) > 0)
                         @foreach ($topics as $topic)
-                            <tr data-entry-id="{{ $topic->topics_id }}">
+                            <tr data-entry-id="{{ $topic['topics_id'] }}">
                                 
-                                <td>{{ $topic->title }}</td>
-                                <td><a href="/testIndex/{{ $topic->topics_id }}" class="btn btn-xs btn-primary">开始</a></td>
+                                <td>{{ $topic['title'] }}</td>
+                                <td><a href="/testIndex/{{ $topic['topics_id'] }}" class="btn btn-xs btn-primary">开始</a></td>
                             </tr>
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="3">@lang('quickadmin.no_entries_in_table')</td>
+                            <!-- <td colspan="3">@lang('quickadmin.no_entries_in_table')</td> -->
+                            <td colspan="3">近期没有考试</td>
                         </tr>
                     @endif
                 </tbody>

@@ -92,7 +92,7 @@
             <p>&nbsp;</p>
 
             <a href="/showtest" class="btn btn-default">开始下一个考试</a>
-            <a href="{{ route('results.index') }}" class="btn btn-default">查看我全的考试结果</a>
+            <!-- <a href="{{ route('results.index') }}" class="btn btn-default">查看我全的考试结果</a> -->
         </div>
     </div>
 @stop

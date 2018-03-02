@@ -16,7 +16,7 @@
         var role;
         $.get("/userinfo",function(data, status) {
             if (data.role_id == 1) role = '管理员';
-            if (data.role_id == 2) role = '参试者';
+            if (data.role_id == 2 || !data.role_id) role = '参试者';
             if (data.role_id == 3) role = '老师';
             $("#role").text(role + ': ' + data.name);
         });

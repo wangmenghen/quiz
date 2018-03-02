@@ -16,13 +16,6 @@
                     <span class="title">@lang('quickadmin.test.new')</span>
                 </a>
             </li>
-            <li class="{{ $request->segment(1) == 'results' ? 'active' : '' }}">
-                <a href="{{ route('results.index') }}">
-                    <i class="fa fa-gears"></i>
-                    <span class="title">@lang('quickadmin.results.title')</span>
-                </a>
-            </li>
-
             @if(Auth::user()->isTeacher() || Auth::user()->isAdmin())
             <li class="{{ $request->segment(1) == 'topics' ? 'active' : '' }}">
                 <a href="{{ route('topics.index') }}">
@@ -42,7 +35,12 @@
                     <span class="title">@lang('quickadmin.questions-options.title')</span>
                 </a>
             </li> -->
-
+            <li class="{{ $request->segment(1) == 'results' ? 'active' : '' }}">
+                <a href="{{ route('results.index') }}">
+                    <i class="fa fa-gears"></i>
+                    <span class="title">@lang('quickadmin.results.title')</span>
+                </a>
+            </li>
             <li>
                 <a href="#">
                     <i class="fa fa-users"></i>

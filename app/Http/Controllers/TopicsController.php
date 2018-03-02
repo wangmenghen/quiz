@@ -193,6 +193,11 @@ class TopicsController extends Controller
             foreach ($entries as $entry) {
                 $entry->delete();
             }
+            // 删除考试科目需要同时删除考试记录，否则会在获取考试科目时会出错
+            $quizLogs = QuizLog::where('topics_id', $request->input('ids'))->get();
+            foreach ($quizLogs as $quizLog) {
+                $quizLog->delete();
+            }
         }
     }
 
@@ -200,21 +205,21 @@ class TopicsController extends Controller
     {
         // $topics = Topic::all();
         $user = Auth::user();
-        $topics = QuizLog::where('user_id', $user->id)->where('is_finish', 0)->get();
-        // $quizDatas = QuizLog::where('user_id', $user->id)->get();
+        // $topics = QuizLog::where('user_id', $user->id)->where('is_finish', 0)->get();
+        $quizDatas = QuizLog::where('user_id', $user->id)->where('is_finish', 0)->get();
         // var_dump($user->id);
-        // $topics = [];
-        // foreach ($quizDatas as $key => $quizData) {
+        $topics = [];
+        foreach ($quizDatas as $key => $quizData) {
             
-        //     $topic = Topic::where('id', $quizData->topics_id)->first();
-        //     var_dump($topic);
-        //     var_dump($quizData->topics_id);
-        //     die();
-        //     $topics[$key]['topics_id'] = $quizData->topics_id;
-        //     $topics[$key]['title'] = $quizData->title;
-        //     $topics[$key]['quiz_time'] = $topic->quiz_time;
-        //     $topics[$key]['start_time'] = $quizData->start_time;
-        // }
+            $topic = Topic::where('id', $quizData->topics_id)->first();
+            // var_dump($topic);
+            // var_dump($quizData->topics_id);
+            // die();
+            $topics[$key]['topics_id'] = $quizData->topics_id;
+            $topics[$key]['title'] = $quizData->title;
+            $topics[$key]['quiz_time'] = $topic->quiz_time;
+            $topics[$key]['start_time'] = $quizData->start_time;
+        }
         // var_dump($topics);
         // die();
         return view('tests.show', compact('topics'));
