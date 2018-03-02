@@ -87,6 +87,7 @@
     <!-- <a class="btn btn-danger quiz_submit">提交</a> -->
     {!! Form::submit(trans('quickadmin.submit_quiz'), ['class' => 'btn btn-danger quiz_submit']) !!}
     <!-- {!! Form::close() !!} -->
+    <input type="hidden" name="topicId" value="{{$topicId}}">
     </form>
 @stop
 
@@ -109,7 +110,7 @@
             setCountDown_time();
         })
         /*时间倒计时*/
-        var sec = 10,min = 1;
+        var sec = 59,min = 59;
         // if (parseInt(localStorage.getItem('interrupt')) === 0) {
         //     console.log('setting')
         //     console.log('sec', localStorage);

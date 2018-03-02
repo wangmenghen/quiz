@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <a href="{{ route('tests.index') }}" class="btn btn-success">开始一个新的考试!</a>
+            <a href="/showtest" class="btn btn-success">开始一个新的考试!</a>
         </div>
     </div>
 @endsection

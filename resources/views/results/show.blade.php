@@ -60,6 +60,13 @@
                                             @if ($option->submit) <em>(你提交的答案)</em> @endif
                                         </li>
                                     @endif
+                                    @if ($result->question->type == 3)
+                                        <li style="@if ($option->correct == 1) font-weight: bold; @endif
+                                            @if ($option->submit) text-decoration: underline @endif">{{ $option->option }}
+                                            @if ($option->correct == 1) <em>(正确答案)</em> @endif
+                                            @if ($option->submit) <em>(你提交的答案)</em> @endif
+                                        </li>
+                                    @endif
                                 @endforeach
                                 </ul>
                             </td>

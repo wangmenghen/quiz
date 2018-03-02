@@ -42,13 +42,8 @@ class ResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    // ->line('The introduction to the notification.')
-                    // ->action('Notification Action', 'https://laravel.com')
-                    // ->line('Thank you for using our application!');
-                    // ->subject('XXXX')
-                    // ->salutation('XXX')
                     ->line('您之所以收到这封邮件是因为我们收到了您重置密码的申请。')
-                    ->action('Reset Password', url(config('app.url').route('auth.password.reset', $this->token, false)))
+                    ->action('Reset Password', url(config('app.url').route('auth.password.email', $this->token, false)))
                     ->line('如果您本人未进行密码重置，您可以不必采取进一步操作!');
     }
 

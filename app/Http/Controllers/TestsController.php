@@ -11,6 +11,7 @@ use App\Question;
 use App\QuestionsOption;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTestRequest;
+use App\QuizLog;
 
 class TestsController extends Controller
 {
@@ -52,7 +53,8 @@ class TestsController extends Controller
     public function store(Request $request)
     {
         $result = 0;
-
+        // var_dump($request->input('topicId'));
+        // die();
         $test = Test::create([
             'user_id' => Auth::id(),
             'result'  => $result,
@@ -118,21 +120,32 @@ class TestsController extends Controller
         
         $test->update(['result' => $result]);
 
+        $topicId = $request->input('topicId');
+        $quizlog = QuizLog::where('topics_id', $topicId)->where('user_id', Auth::id())->first();
+        // var_dump($quizlog);
+        // var_dump($request->input('topicId'));
+        // die();
+        if ($quizlog instanceof QuizLog) {
+            $quizlog->is_finish = 1;
+            $quizlog->save();
+        }
         return redirect()->route('results.show', [$test->id]);
     }
     
     public function testIndex($typeId)
-    {
-        // var_dump($typeId);
-        // die();
+    {   
         $topic = Topic::where('id', $typeId)->first();
+        // var_dump($topic);
+        // die();
         $title = $topic->title;
+        
         $questions = Question::where('topic_id', $typeId)->inRandomOrder()->limit(10)->get();
+        $topicId = $typeId;
         foreach ($questions as &$question) {
             $question->options = QuestionsOption::where('question_id', $question->id)->inRandomOrder()->get();
         }
 
-        return view('tests.create', compact('questions', 'title'));
+        return view('tests.create', compact('questions', 'title', 'topicId'));
     }
 
     public function saveTime(Request $request)

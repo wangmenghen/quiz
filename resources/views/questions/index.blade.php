@@ -38,7 +38,7 @@
                                     <td>多选</td>
                                 @endif
                                 @if ($question->type == 3)
-                                    <td>填空</td>
+                                    <td>判断</td>
                                 @endif
                                 @if ($question->type == null)
                                     <td></td>

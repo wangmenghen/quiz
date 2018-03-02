@@ -66,14 +66,14 @@
                             </span>
                         </a>
                     </li>
-                    <!-- <li class="{{ $request->segment(1) == 'user_actions' ? 'active active-sub' : '' }}">
-                        <a href="{{ route('user_actions.index') }}">
+                    <li class="{{ $request->segment(1) == 'users' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('questions_options.judgeIndex') }}">
                             <i class="fa fa-th-list"></i>
                             <span class="title">
-                                填空题
+                                判断题
                             </span>
                         </a>
-                    </li> -->
+                    </li>
                 </ul>
             </li>
             @endif

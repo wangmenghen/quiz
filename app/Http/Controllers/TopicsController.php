@@ -6,6 +6,9 @@ use App\Topic;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTopicsRequest;
 use App\Http\Requests\UpdateTopicsRequest;
+use App\User;
+use App\QuizLog;
+use Illuminate\Support\Facades\Auth;
 
 class TopicsController extends Controller
 {
@@ -22,7 +25,7 @@ class TopicsController extends Controller
     public function index()
     {
         $topics = Topic::all();
-
+        
         return view('topics.index', compact('topics'));
     }
 
@@ -33,7 +36,8 @@ class TopicsController extends Controller
      */
     public function create()
     {
-        return view('topics.create');
+        $users = User::all();
+        return view('topics.create', compact('users'));
     }
 
     /**
@@ -44,8 +48,28 @@ class TopicsController extends Controller
      */
     public function store(StoreTopicsRequest $request)
     {
-        Topic::create($request->all());
-
+        // var_dump($request->all());
+        // die();
+        $topic = Topic::create([
+            'title'       => $request->input('title'),
+            'quiz_time'   => $request->input('quizTime'),
+            'start_time'  => $request->input('startTime'),
+            // ''  => $request->input(),
+        ]);
+        $testers = $request->input('tester');
+        foreach ($testers as $tester) {
+            $quizLog = QuizLog::where('user_id', $tester)->where('topics_id', $topic->id)->first();
+            $user = User::where('id', $tester)->first();
+            if (!($quizLog instanceof QuizLog)) {
+                QuizLog::create([
+                    'user_id'   => $tester,
+                    'topics_id' => $topic->id,
+                    'is_finish' => 0,
+                    'title'     => $request->input('title'),
+                    'username'  => $user->name,
+                ]);
+            }
+        }
         return redirect()->route('topics.index');
     }
 
@@ -59,8 +83,18 @@ class TopicsController extends Controller
     public function edit($id)
     {
         $topic = Topic::findOrFail($id);
-
-        return view('topics.edit', compact('topic'));
+        // var_dump($topic);
+        // $quizLogs = Quizlog::all();
+        $users = User::all();
+        foreach ($users as $key => $user) {
+            $quizLog = QuizLog::where('user_id', $user->id)->where('topics_id', $id)->first();
+            if ($quizLog instanceof QuizLog) {
+                $users[$key]['join'] = 1;
+            } else {
+                $users[$key]['join'] = 0;
+            }
+        }
+        return view('topics.edit', compact('topic', 'users'));
     }
 
     /**
@@ -73,8 +107,47 @@ class TopicsController extends Controller
     public function update(UpdateTopicsRequest $request, $id)
     {
         $topic = Topic::findOrFail($id);
-        $topic->update($request->all());
+        $topic->title = $request->input('title');
+        $topic->quiz_time = $request->input('quizTime');
+        $topic->start_time = $request->input('startTime');
+        $topic->save();
 
+        $testers = $request->input('tester');
+        // 新增的考试者     
+        foreach ($testers as $tester) {
+            $quizLog = QuizLog::where('user_id', intval($tester))->where('topics_id', $id)->first();
+            $user = User::where('id', intval($tester))->first();
+            if (!($quizLog instanceof QuizLog)) {
+                QuizLog::create([
+                    'user_id'   => intval($tester),
+                    'topics_id' => $id,
+                    'is_finish' => 0,
+                    'title'     => $request->input('title'),
+                    'username'  => $user->name,
+                ]);
+            }
+        }
+        // 对比提交上来的参试者与考试记录的数量做对比
+        // 若是发现考试记录的参数者在 提交的参试者中不存在，则说明取消该参试者的考试资格
+        $user = Auth::user();
+        $thisQuiztesters = QuizLog::where('topics_id', $id)->where('user_id', $user->id)->get();
+        $data = [];
+        foreach ($thisQuiztesters as $index => $thisQuiztester) {
+            $data[$index] = [
+                'logMode' => $thisQuiztester,
+                'is_join' => false,
+            ];
+            foreach ($testers as $tester) {
+                if ($thisQuiztester->user_id == intval($tester)) {
+                    $data[$index]['is_join'] = true;
+                }
+            }
+        }
+        foreach ($data as $index => $key) {
+            if (!$key['is_join']) {
+                $key['logMode']->delete();
+            }
+        }
         return redirect()->route('topics.index');
     }
 
@@ -88,8 +161,8 @@ class TopicsController extends Controller
     public function show($id)
     {
         $topic = Topic::findOrFail($id);
-
-        return view('topics.show', compact('topic'));
+        $users = QuizLog::where('topics_id', $id)->get();
+        return view('topics.show', compact('topic', 'users'));
     }
 
 
@@ -125,8 +198,25 @@ class TopicsController extends Controller
 
     public function showtest()
     {
-        $topics = Topic::all();
-
+        // $topics = Topic::all();
+        $user = Auth::user();
+        $topics = QuizLog::where('user_id', $user->id)->where('is_finish', 0)->get();
+        // $quizDatas = QuizLog::where('user_id', $user->id)->get();
+        // var_dump($user->id);
+        // $topics = [];
+        // foreach ($quizDatas as $key => $quizData) {
+            
+        //     $topic = Topic::where('id', $quizData->topics_id)->first();
+        //     var_dump($topic);
+        //     var_dump($quizData->topics_id);
+        //     die();
+        //     $topics[$key]['topics_id'] = $quizData->topics_id;
+        //     $topics[$key]['title'] = $quizData->title;
+        //     $topics[$key]['quiz_time'] = $topic->quiz_time;
+        //     $topics[$key]['start_time'] = $quizData->start_time;
+        // }
+        // var_dump($topics);
+        // die();
         return view('tests.show', compact('topics'));
     }
 }

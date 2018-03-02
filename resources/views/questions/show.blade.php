@@ -37,9 +37,9 @@
                                 @if ($question->type == 2)
                                     多选
                                 @endif
-                                <!-- @if ($question->type == 3)
-                                    填空
-                                @endif -->
+                                @if ($question->type == 3)
+                                    判断
+                                @endif
                             </td>
                         </tr>
                     </table>

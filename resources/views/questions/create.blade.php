@@ -36,76 +36,77 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('option1', '选项 #1', ['class' => 'control-label']) !!}
-                    {!! Form::text('option1', old('option1'), ['class' => 'form-control ', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('option1'))
-                        <p class="help-block">
-                            {{ $errors->first('option1') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('option2', '选项 #2', ['class' => 'control-label']) !!}
-                    {!! Form::text('option2', old('option2'), ['class' => 'form-control ', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('option2'))
-                        <p class="help-block">
-                            {{ $errors->first('option2') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('option3', '选项 #3', ['class' => 'control-label']) !!}
-                    {!! Form::text('option3', old('option3'), ['class' => 'form-control ', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('option3'))
-                        <p class="help-block">
-                            {{ $errors->first('option3') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('option4', '选项 #4', ['class' => 'control-label']) !!}
-                    {!! Form::text('option4', old('option4'), ['class' => 'form-control ', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('option4'))
-                        <p class="help-block">
-                            {{ $errors->first('option4') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('option5', '选项 #5', ['class' => 'control-label']) !!}
-                    {!! Form::text('option5', old('option5'), ['class' => 'form-control ', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('option5'))
-                        <p class="help-block">
-                            {{ $errors->first('option5') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
                     <label class="" for="">题目类型</label>
-                    
                     <select id ="type" class="js-example-basic-single" name="type" style="width:100px">
-                        <option value="1">单选</option>
-                        <option value="2">多选</option>
-                        <option value="3">填空题</option>
+                        <option value="1">单选题</option>
+                        <option value="2">多选题</option>
+                        <option value="3">判断题</option>
                     </select>
                 </div>
             </div>
-            <div class="row" id="simple">
+            <div id="option">
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        {!! Form::label('option1', '选项 #1', ['class' => 'control-label']) !!}
+                        {!! Form::text('option1', old('option1'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                        <p class="help-block"></p>
+                        @if($errors->has('option1'))
+                            <p class="help-block">
+                                {{ $errors->first('option1') }}
+                            </p>
+                        @endif
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        {!! Form::label('option2', '选项 #2', ['class' => 'control-label']) !!}
+                        {!! Form::text('option2', old('option2'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                        <p class="help-block"></p>
+                        @if($errors->has('option2'))
+                            <p class="help-block">
+                                {{ $errors->first('option2') }}
+                            </p>
+                        @endif
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        {!! Form::label('option3', '选项 #3', ['class' => 'control-label']) !!}
+                        {!! Form::text('option3', old('option3'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                        <p class="help-block"></p>
+                        @if($errors->has('option3'))
+                            <p class="help-block">
+                                {{ $errors->first('option3') }}
+                            </p>
+                        @endif
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        {!! Form::label('option4', '选项 #4', ['class' => 'control-label']) !!}
+                        {!! Form::text('option4', old('option4'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                        <p class="help-block"></p>
+                        @if($errors->has('option4'))
+                            <p class="help-block">
+                                {{ $errors->first('option4') }}
+                            </p>
+                        @endif
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        {!! Form::label('option5', '选项 #5', ['class' => 'control-label']) !!}
+                        {!! Form::text('option5', old('option5'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                        <p class="help-block"></p>
+                        @if($errors->has('option5'))
+                            <p class="help-block">
+                                {{ $errors->first('option5') }}
+                            </p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="simple"> 
                 <div class="col-xs-12 form-group">
                     {!! Form::label('correct', '正确选项(单选)', ['class' => 'control-label']) !!}
                     {!! Form::select('correct', $correct_options, old('correct'), ['class' => 'form-control']) !!}
@@ -119,7 +120,7 @@
             </div>
             <div class="row hide" id="mult">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('correct', '正确选项(多选/两个答案)', ['class' => 'control-label']) !!}
+                    {!! Form::label('correct', '正确选项(多选)', ['class' => 'control-label']) !!}
                     <select id ="mulType" class="js-example-basic-single" name="correct[]" multiple="multiple" style="width:100%">
                         <option value="option1">选项#1</option>
                         <option value="option2">选项#2</option>
@@ -127,6 +128,21 @@
                         <option value="option4">选项#4</option>
                         <option value="option5">选项#5</option>
                     </select>
+                </div>
+            </div>
+            <div id="judge" class="hide">
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        {!! Form::label('correct', '是否为正确项', ['class' => 'control-label']) !!}
+                        {!! Form::hidden('correct', 0) !!}
+                        {!! Form::checkbox('correct', 1, old('correct', 0), ['class' => 'form-control']) !!}
+                        <p class="help-block"></p>
+                        @if($errors->has('correct'))
+                            <p class="help-block">
+                                {{ $errors->first('correct') }}
+                            </p>
+                        @endif
+                    </div>
                 </div>
             </div>
             <!-- <div class="row">
@@ -165,7 +181,6 @@
                     @endif
                 </div>
             </div>
-
         </div>
     </div>
 

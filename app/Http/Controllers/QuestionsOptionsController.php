@@ -185,4 +185,20 @@ class QuestionsOptionsController extends Controller
             }
         }
     }
+
+    public function judgeIndex()
+    {
+        $questions_options = QuestionsOption::where('type', 3)->get();
+
+        return view('judge_questions_option.index', compact('questions_options'));
+    }
+
+    public function createJudge()
+    {
+        $relations = [
+            'questions' => \App\Question::get()->pluck('question_text', 'id')->prepend('Please select', ''),
+        ];
+
+        return view('judge_questions_option.create', $relations);
+    }
 }

@@ -22,11 +22,52 @@
                         </p>
                     @endif
                 </div>
+                <div class="col-xs-12 form-group">
+                    <label class="" for="">考试时间</label>
+                    <select id="quizTimeEdit" class="js-example-basic-single" name="quizTime" style="width:100px" value="{{$topic->quiz_time}}">
+                        <option value="60">60分钟</option>
+                        <option value="90">90分钟</option>
+                        <option value="120">120分钟</option>
+                    </select>
+                </div>
+                <div class="col-xs-12 form-group">
+                    <label class="" for="">考试开始时间</label>
+                    <div id="datepicker"></div>
+                    <input type="text" id="d233" class="Wdate" name="startTime" value="{{$topic->start_time}}"
+                     onclick="WdatePicker(
+                        {startDate: '%y-%M-01 00:00:00',
+                            dateFmt: 'yyyy-MM-dd HH:mm:ss',
+                            alwaysUseStartDate:true,
+                            minDate:'%y-%M-%d'
+                        })"/>
+                </div>
+                <div class="col-xs-12 form-group"><i class="fa fa-users"></i><label class="" for="">选定参试人员</label></div>
+                <div class="col-xs-12 form-group">  
+                    @foreach ($users as $user)
+                        <div class="col-md-2">
+                            <span class="input-group-addon">
+                            @if ($user->join  == 1)
+                                <input type="checkbox" value="{{$user->id}}" name="tester[]" checked = 'checked'>
+                            @endif
+                            @if ($user->join  == 0) 
+                                <input type="checkbox" value="{{$user->id}}" name="tester[]">
+                            @endif
+                                <span>{{$user->name}}</span>
+                            </span>
+                            
+                        </div>
+                    @endforeach 
+                </div>
             </div>
             
         </div>
     </div>
-
+    <script>
+        $(document).ready(function() {
+            // $("#quizTimeEdit").select2('val','{{$topic->quiz_time}}')
+            $("#quizTimeEdit").val({{$topic->quiz_time}}).trigger("change")
+        })
+    </script>
     {!! Form::submit(trans('quickadmin.update'), ['class' => 'btn btn-danger']) !!}
     {!! Form::close() !!}
 @stop

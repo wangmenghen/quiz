@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">选则你要参加的考试</h3>
+    <h3 class="page-title">选择你要参加的考试</h3>
 
     <div class="panel panel-default">
         <div class="panel-body">
@@ -17,10 +17,10 @@
                 <tbody>
                     @if (count($topics) > 0)
                         @foreach ($topics as $topic)
-                            <tr data-entry-id="{{ $topic->id }}">
+                            <tr data-entry-id="{{ $topic->topics_id }}">
                                 
                                 <td>{{ $topic->title }}</td>
-                                <td><a href="/testIndex/{{ $topic->id }}" class="btn btn-xs btn-primary">开始</a></td>
+                                <td><a href="/testIndex/{{ $topic->topics_id }}" class="btn btn-xs btn-primary">开始</a></td>
                             </tr>
                         @endforeach
                     @else
