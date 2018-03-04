@@ -60,7 +60,7 @@ class QuestionsController extends Controller
 
         $question = Question::create($request->all());
         // var_dump($request->all());
-        // die($request->all());
+        // die();
         if ($request->type == 1) {
             foreach ($request->input() as $key => $value) {
                 if(strpos($key, 'option') !== false && $value != '') {
@@ -94,6 +94,9 @@ class QuestionsController extends Controller
                     ]);
                 }
             }
+        } else if ($request->type == 3) {
+            $question->judge_correct = intval($request->input('judge_correct'));
+            $question->save();
         }
         
         return redirect()->route('questions.index');

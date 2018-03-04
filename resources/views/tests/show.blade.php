@@ -10,6 +10,7 @@
                     <tr>
                         
                         <th>考试科目</th>
+                        <th>考试时间</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -20,7 +21,28 @@
                             <tr data-entry-id="{{ $topic['topics_id'] }}">
                                 
                                 <td>{{ $topic['title'] }}</td>
-                                <td><a href="/testIndex/{{ $topic['topics_id'] }}" class="btn btn-xs btn-primary">开始</a></td>
+                                <td>{{ $topic['start_time'] }}</td>
+                                <td>
+                                    <a href="/testIndex/{{ $topic['topics_id'] }}" class="btn btn-xs btn-primary">开始
+                                    </a>
+                                    <!-- @if ($topic['status'] == 0)
+                                    <a href="/testIndex/{{ $topic['topics_id'] }}" class="btn btn-xs btn-primary" disabled="disabled">
+                                    考试未开始
+                                    </a>
+                                    @endif
+
+                                    @if ($topic['status'] == 1)
+                                    <a href="/testIndex/{{ $topic['topics_id'] }}" class="btn btn-xs btn-primary">
+                                    开始
+                                    </a>
+                                    @endif
+
+                                    @if ($topic['status'] == -1)
+                                    <a href="/testIndex/{{ $topic['topics_id'] }}" class="btn btn-xs btn-primary hide">
+                                    开始
+                                    </a>
+                                    @endif -->
+                                </td>
                             </tr>
                         @endforeach
                     @else

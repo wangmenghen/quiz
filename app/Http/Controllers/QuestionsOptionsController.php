@@ -139,7 +139,7 @@ class QuestionsOptionsController extends Controller
     /**
      * 单选 type = 1
      * 多选 type = 2
-     * 填空 type = 3
+     * 判断 type = 3
      *
      * @param Request $request
      * 多选题显示
@@ -188,17 +188,56 @@ class QuestionsOptionsController extends Controller
 
     public function judgeIndex()
     {
-        $questions_options = QuestionsOption::where('type', 3)->get();
+        $questions = Question::where('type', 3)->get();
 
-        return view('judge_questions_option.index', compact('questions_options'));
+        return view('judge_questions_option.index', compact('questions'));
     }
 
     public function createJudge()
     {
         $relations = [
-            'questions' => \App\Question::get()->pluck('question_text', 'id')->prepend('Please select', ''),
+            'topics' => \App\Topic::get()->pluck('title', 'id')->prepend('Please select', ''),
         ];
 
         return view('judge_questions_option.create', $relations);
+    }
+
+    public function storeJudge(Request $request)
+    {
+        $question = Question::create($request->all());
+
+        return redirect()->route('questions_options.multIndex');
+    }
+
+    public function judgeShow($id)
+    {
+        // $relations = [
+        //     'questions' => \App\Question::get()->pluck('question_text', 'id')->prepend('Please select', ''),
+        // ];
+
+        $questions_option = Question::findOrFail($id);
+
+        // return view('judge_questions_option.show', compact('questions_option') + $relations);
+        return view('judge_questions_option.show', compact('questions_option'));
+    }
+
+    public function judgeEdit($id)
+    {
+        $relations = [
+            'topics' => \App\Topic::get()->pluck('title', 'id')->prepend('Please select', ''),
+        ];
+
+        $questions = Question::findOrFail($id);
+
+        // return view('judge_questions_option.edit', compact('questions_option') + $relations);
+        return view('judge_questions_option.edit', compact('questions') + $relations);
+    }
+
+    public function judgeUpdate(Request $request)
+    {
+        $questions = Question::findOrFail($request->input('id'));
+        $questions->update($request->all());
+
+        return redirect()->route('questions_options.index');
     }
 }

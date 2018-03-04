@@ -62,13 +62,24 @@
             
         </div>
     </div>
+    
+    {!! Form::submit(trans('quickadmin.update'), ['class' => 'btn btn-danger']) !!}
+    @if ($role  == 1)
+    <a id="restart" class="btn btn-danger">重新开启考试</a>
+    @endif
+    {!! Form::close() !!}
     <script>
         $(document).ready(function() {
             // $("#quizTimeEdit").select2('val','{{$topic->quiz_time}}')
             $("#quizTimeEdit").val({{$topic->quiz_time}}).trigger("change")
+            $("#restart").click(function() {
+                $.post("/reset",
+                    {id: {{$topicId}}},
+                    function(result) {
+                    alert('ok!');
+                });
+            });
         })
     </script>
-    {!! Form::submit(trans('quickadmin.update'), ['class' => 'btn btn-danger']) !!}
-    {!! Form::close() !!}
 @stop
 

@@ -31,7 +31,7 @@
                             (多选题)
                         @endif
                         @if ($question->type == 3)
-                            (填空题)
+                            (判断题)
                         @endif
                         </strong>
                         <br/>
@@ -75,6 +75,15 @@
                         </label>
                     @endforeach
                     @endif
+
+                    <!-- 多选 -->
+                    @if ($question->type == 3) 
+                        <input type="hidden" id='hidJudge' 
+                               name="questionsjudge[{{ $i }}]"
+                               value="{{ $question->id }}">
+                        <input type="radio" name="answersJudge-{{ $question->id }}" value='1'>正确
+                        <input type="radio" name="answersJudge-{{ $question->id }}" value='0'>错误
+                    @endif
                     </div>
                 </div>
             </div>
@@ -110,7 +119,9 @@
             setCountDown_time();
         })
         /*时间倒计时*/
-        var sec = 59,min = 59;
+        var quizTime = {{$quizTime}};
+        var sec = 59;
+        var min = quizTime - 1;
         // if (parseInt(localStorage.getItem('interrupt')) === 0) {
         //     console.log('setting')
         //     console.log('sec', localStorage);

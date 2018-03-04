@@ -53,7 +53,7 @@ class TestsController extends Controller
     public function store(Request $request)
     {
         $result = 0;
-        // var_dump($request->input('topicId'));
+        // var_dump($request->all());
         // die();
         $test = Test::create([
             'user_id' => Auth::id(),
@@ -117,6 +117,28 @@ class TestsController extends Controller
                 'submit_option' => $submitOption
             ]);
         }
+
+        // 处理判断题
+        foreach ($request->input('questionsjudge', []) as $key => $question) {
+            $status = [];
+            $correct = 1;
+            $judgeQuestion = Question::find($question);
+            if ($judgeQuestion->judge_correct != $request->input('answersJudge-'.$question)) {
+                $correct = 0;
+            }
+            $submitOption = $request->input('answersJudge-'.$question);
+            TestAnswer::create([
+                'user_id'       => Auth::id(),
+                'test_id'       => $test->id,
+                'question_id'   => $question,
+                'option_id'     => 0,
+                'correct'       => $correct,
+                'submit_option' => $submitOption
+            ]);
+            if ($correct) {
+                $result++;
+            }
+        }
         
         $test->update(['result' => $result]);
 
@@ -144,8 +166,8 @@ class TestsController extends Controller
         foreach ($questions as &$question) {
             $question->options = QuestionsOption::where('question_id', $question->id)->inRandomOrder()->get();
         }
-
-        return view('tests.create', compact('questions', 'title', 'topicId'));
+        $quizTime = $topic->quiz_time;
+        return view('tests.create', compact('questions', 'title', 'topicId', 'quizTime'));
     }
 
     public function saveTime(Request $request)

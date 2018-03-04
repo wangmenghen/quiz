@@ -2,13 +2,13 @@
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.questions.title')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['questions.store']]) !!}
-
+    <!-- {!! Form::open(['method' => 'POST', 'route' => ['questions.store']]) !!} -->
+    <form action="/store_judge_questions" method="POST">
     <div class="panel panel-default">
         <div class="panel-heading">
             @lang('quickadmin.create')
         </div>
-        <input type="hidden" value="3" name="type">
+
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
@@ -34,16 +34,27 @@
                     @endif
                 </div>
             </div>
-            <div class="row" id="simple">
+            <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('correct', '正确选项(单选)', ['class' => 'control-label']) !!}
-                    {!! Form::select('correct', $correct_options, old('correct'), ['class' => 'form-control']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('correct'))
-                        <p class="help-block">
-                            {{ $errors->first('correct') }}
-                        </p>
-                    @endif
+                    <label class="" for="">题目类型</label>
+                    <select id ="type" class="js-example-basic-single" name="type" style="width:100px">
+                        <option value="3">判断题</option>
+                    </select>
+                </div>
+            </div>
+            <div id="judge">
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        {!! Form::label('correct', '是否为正确项', ['class' => 'control-label']) !!}
+                        {!! Form::hidden('correct', 0) !!}
+                        {!! Form::checkbox('correct', 1, old('correct', 0), ['class' => 'form-control']) !!}
+                        <p class="help-block"></p>
+                        @if($errors->has('correct'))
+                            <p class="help-block">
+                                {{ $errors->first('correct') }}
+                            </p>
+                        @endif
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -70,11 +81,11 @@
                     @endif
                 </div>
             </div>
-
         </div>
     </div>
 
     {!! Form::submit(trans('quickadmin.save'), ['class' => 'btn btn-danger']) !!}
-    {!! Form::close() !!}
+    <!-- {!! Form::close() !!} -->
+    </form>
 @stop
 

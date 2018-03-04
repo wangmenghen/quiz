@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateTopicsRequest;
 use App\User;
 use App\QuizLog;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class TopicsController extends Controller
 {
@@ -94,7 +95,9 @@ class TopicsController extends Controller
                 $users[$key]['join'] = 0;
             }
         }
-        return view('topics.edit', compact('topic', 'users'));
+        $role = Auth::user()->role_id;
+        $topicId = $id;
+        return view('topics.edit', compact('topic', 'users', 'role', 'topicId'));
     }
 
     /**
@@ -201,6 +204,11 @@ class TopicsController extends Controller
         }
     }
 
+    /*
+     * status = 0 表示考试未开始
+     * statue = 1 表示考试已经开始
+     * statue = -1 表示已经超时考试时间
+     */
     public function showtest()
     {
         // $topics = Topic::all();
@@ -218,10 +226,35 @@ class TopicsController extends Controller
             $topics[$key]['topics_id'] = $quizData->topics_id;
             $topics[$key]['title'] = $quizData->title;
             $topics[$key]['quiz_time'] = $topic->quiz_time;
-            $topics[$key]['start_time'] = $quizData->start_time;
+            $topics[$key]['start_time'] = $topic->start_time;
+            $topics[$key]['status'] = $this->getQuizStatus($topic->start_time, $topic->quiz_time);
         }
         // var_dump($topics);
         // die();
         return view('tests.show', compact('topics'));
+    }
+
+    public function getQuizStatus($startTime, $quizTime)
+    {
+        $currrent = Carbon::now();
+        $start = new Carbon($startTime);
+        $end = $start->addMinutes(intval($quizTime));
+
+        if ($currrent->lt($start)) return 0;
+
+        if ($currrent->gte($start) && $currrent->lt($end)) return 1;
+
+        if ($currrent->gte($end)) return -1;
+    }
+
+    public function resetQuiz(Request $request)
+    {
+        $topicId = $request->input('id');
+        $quizLogs = QuizLog::where('topics_id', $topicId)->get();
+        foreach ($quizLogs as $quizLog) {
+            $quizLog->is_finish = 0;
+            $quizLog->save();
+        }
+        return response()->json(['code' => 1, 'des' => 'success']);
     }
 }

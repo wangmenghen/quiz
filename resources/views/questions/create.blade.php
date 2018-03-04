@@ -133,13 +133,13 @@
             <div id="judge" class="hide">
                 <div class="row">
                     <div class="col-xs-12 form-group">
-                        {!! Form::label('correct', '是否为正确项', ['class' => 'control-label']) !!}
-                        {!! Form::hidden('correct', 0) !!}
-                        {!! Form::checkbox('correct', 1, old('correct', 0), ['class' => 'form-control']) !!}
+                        {!! Form::label('judge_correct', '是否为正确项', ['class' => 'control-label']) !!}
+                        {!! Form::hidden('judge_correct', 0) !!}
+                        {!! Form::checkbox('judge_correct', 1, old('judge_correct', 0), ['class' => 'form-control']) !!}
                         <p class="help-block"></p>
-                        @if($errors->has('correct'))
+                        @if($errors->has('judge_correct'))
                             <p class="help-block">
-                                {{ $errors->first('correct') }}
+                                {{ $errors->first('judge_correct') }}
                             </p>
                         @endif
                     </div>

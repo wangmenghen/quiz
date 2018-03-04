@@ -60,7 +60,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('judge_questions', ['uses' => 'QuestionsOptionsController@judgeIndex', 'as' => 'questions_options.judgeIndex']);
     Route::get('/create_judge_questions', 'QuestionsOptionsController@createJudge');
     Route::post('/store_judge_questions', ['uses' => 'QuestionsOptionsController@storeJudge', 'as' => 'questions_options.storeJudge']);
+    Route::post('/update_judge_questions', ['uses' => 'QuestionsOptionsController@judgeUpdate', 'as' => 'questions_options.judgeUpdate']);
+    Route::get('/show_judge_questions/{id}', 'QuestionsOptionsController@judgeShow');
+    Route::get('/edit_judge_questions/{id}', 'QuestionsOptionsController@judgeEdit');
     // Route::post('/store_mult_questions', 'QuestionsOptionsController@storeMult');
 
     Route::post('/mult_questions_options_mass_destroy', ['uses' => 'QuestionsOptionsController@deleteJudge', 'as' => 'questions_options.deleteJudge']);
+
+    Route::post('reset', 'TopicsController@resetQuiz');
 });

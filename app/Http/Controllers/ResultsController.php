@@ -60,7 +60,12 @@ class ResultsController extends Controller
                     }
                 }
             }
+            // if ($result->question->type == 3) {
+            //     var_dump($result);
+                
+            // }
         }
-        return view('results.show', compact('test', 'results'));
+        $role = Auth::user()->role_id;
+        return view('results.show', compact('test', 'results', 'role'));
     }
 }
