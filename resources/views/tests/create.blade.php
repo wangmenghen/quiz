@@ -7,14 +7,12 @@
         <p class="line_height34"><span id="countdown_time"></span><span class="countdown_text">分钟</span></p>
         <p class="line_height34 time-over__p"><span id="time_over" class="countdown_text"></span></p>
     </div>
-    <!-- {!! Form::open(['method' => 'POST', 'route' => ['tests.store']]) !!} -->
+
     <form action="{{ route('tests.store') }}" method="POST">
     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
     <div class="panel panel-default">
         <div class="panel-heading">
-            <!-- @lang('quickadmin.quiz') -->
         </div>
-        <?php //dd($questions) ?>
     @if(count($questions) > 0)
         <div class="panel-body">
         <?php $i = 1; ?>
@@ -92,10 +90,8 @@
         </div>
     @endif
     </div>
-    <!-- <button id="form-submit" style="display:none"></button> -->
-    <!-- <a class="btn btn-danger quiz_submit">提交</a> -->
+
     {!! Form::submit(trans('quickadmin.submit_quiz'), ['class' => 'btn btn-danger quiz_submit']) !!}
-    <!-- {!! Form::close() !!} -->
     <input type="hidden" name="topicId" value="{{$topicId}}">
     </form>
 @stop
@@ -105,13 +101,7 @@
     <script src="{{ url('quickadmin/js') }}/timepicker.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.js"></script> -->
     <script src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
-    <!-- <script>
-        $('.datetime').datetimepicker({
-            autoclose: true,
-            dateFormat: "{{ config('app.date_format_js') }}",
-            timeFormat: "hh:mm:ss"
-        });
-    </script> -->
+
 
     <script>
         $(function() {
@@ -120,8 +110,16 @@
         })
         /*时间倒计时*/
         var quizTime = {{$quizTime}};
-        var sec = 59;
-        var min = quizTime - 1;
+        var startTime = '{{$startTime}}';
+        var now = moment();
+        var end = moment(startTime).add(quizTime, 'm');
+        
+        var ms = end.diff(now);
+        var minutes = parseInt((ms % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = parseInt((ms % (1000 * 60)) / 1000);
+        var sec = seconds;
+        var min = minutes;
+        
         // if (parseInt(localStorage.getItem('interrupt')) === 0) {
         //     console.log('setting')
         //     console.log('sec', localStorage);

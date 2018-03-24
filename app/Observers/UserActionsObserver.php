@@ -10,10 +10,8 @@ class UserActionsObserver
     public function saved($model)
     {
         if ($model->wasRecentlyCreated == true) {
-            // Data was just created
             $action = 'created';
         } else {
-            // Data was updated
             $action = 'updated';
         }
         if (Auth::check()) {
@@ -25,7 +23,6 @@ class UserActionsObserver
             ]);
         }
     }
-
 
     public function deleting($model)
     {

@@ -16,6 +16,12 @@
                     <span class="title">@lang('quickadmin.test.new')</span>
                 </a>
             </li>
+            <li class="{{ $request->segment(1) == 'user' ? 'active' : '' }}">
+                <a href="/user/show">
+                    <i class="fa fa-gears"></i>
+                    <span class="title">个人中心</span>
+                </a>
+            </li>
             @if(Auth::user()->isTeacher() || Auth::user()->isAdmin())
             <li class="{{ $request->segment(1) == 'topics' ? 'active' : '' }}">
                 <a href="{{ route('topics.index') }}">

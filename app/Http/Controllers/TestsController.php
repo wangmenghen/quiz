@@ -22,24 +22,10 @@ class TestsController extends Controller
      */
     public function index($typeId)
     {
-        // $topics = Topic::inRandomOrder()->limit(10)->get();
-
-        // $questions = Question::inRandomOrder()->limit(10)->get();
-
         $questions = Question::where('topic_id', $typeId)->inRandomOrder()->limit(30)->get();
         foreach ($questions as &$question) {
             $question->options = QuestionsOption::where('question_id', $question->id)->inRandomOrder()->get();
         }
-
-        /*
-        foreach ($topics as $topic) {
-            if ($topic->questions->count()) {
-                $questions[$topic->id]['topic'] = $topic->title;
-                $questions[$topic->id]['questions'] = $topic->questions()->inRandomOrder()->first()->load('options')->toArray();
-                shuffle($questions[$topic->id]['questions']['options']);
-            }
-        }
-        */
 
         return view('tests.create', compact('questions'));
     }
@@ -161,13 +147,14 @@ class TestsController extends Controller
         // die();
         $title = $topic->title;
         
-        $questions = Question::where('topic_id', $typeId)->inRandomOrder()->limit(10)->get();
+        $questions = Question::where('topic_id', $typeId)->inRandomOrder()->limit(30)->get();
         $topicId = $typeId;
         foreach ($questions as &$question) {
             $question->options = QuestionsOption::where('question_id', $question->id)->inRandomOrder()->get();
         }
         $quizTime = $topic->quiz_time;
-        return view('tests.create', compact('questions', 'title', 'topicId', 'quizTime'));
+        $startTime = $topic->start_time;
+        return view('tests.create', compact('questions', 'title', 'topicId', 'quizTime', 'startTime'));
     }
 
     public function saveTime(Request $request)

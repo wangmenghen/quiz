@@ -46,4 +46,5 @@
 <meta property="og:title" content="在线考试系统 - how well do you know Laravel?" />
 <meta property="og:image" content="{{ asset('laraquiz.png') }}" />
 <script src="{{ url('quickadmin/js') }}/jquery.js"></script>
+<script src="{{ url('quickadmin/js') }}/moment.js"></script>
 <!-- <meta property="og:description" content="Mini-project with Laravel Quiz. Powered by QuickAdminPanel.com code generator." /> -->

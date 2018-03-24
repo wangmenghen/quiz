@@ -31,7 +31,7 @@
                                 <td></td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->role->title or '' }}</td>
+                                <td>{{ $user->role->title or '学生' }}</td>
                                 <td>
                                     <a href="{{ route('users.show',[$user->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.view')</a>
                                     <a href="{{ route('users.edit',[$user->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.edit')</a>

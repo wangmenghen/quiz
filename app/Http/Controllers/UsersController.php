@@ -141,4 +141,24 @@ class UsersController extends Controller
         $user = Auth::user();
         return response()->json($user, 200);
     }
+
+    public function perShow()
+    {
+        $user = Auth::user();
+        return view('users.personalShow', compact('user'));
+    }
+
+    public function perEdit()
+    {
+        $user = Auth::user();
+        return view('users.personalEdit', compact('user'));
+    }
+
+    public function perUpdate(Request $request)
+    {
+        $user = Auth::user();
+        $user->update($request->all());
+
+        return view('users.personalShow', compact('user'));
+    }
 }

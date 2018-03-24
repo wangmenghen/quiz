@@ -16,16 +16,17 @@
                 </thead>
                 
                 <tbody>
-                    @if (count($topics) > 0)
+                    @if ($noQuiz == 1 && count($topics) > 0)
                         @foreach ($topics as $topic)
+                            @if ($topic['status'] != -1)
                             <tr data-entry-id="{{ $topic['topics_id'] }}">
                                 
                                 <td>{{ $topic['title'] }}</td>
                                 <td>{{ $topic['start_time'] }}</td>
                                 <td>
-                                    <a href="/testIndex/{{ $topic['topics_id'] }}" class="btn btn-xs btn-primary">开始
-                                    </a>
-                                    <!-- @if ($topic['status'] == 0)
+                                    <!-- <a href="/testIndex/{{ $topic['topics_id'] }}" class="btn btn-xs btn-primary">开始
+                                    </a> -->
+                                    @if ($topic['status'] == 0)
                                     <a href="/testIndex/{{ $topic['topics_id'] }}" class="btn btn-xs btn-primary" disabled="disabled">
                                     考试未开始
                                     </a>
@@ -37,13 +38,14 @@
                                     </a>
                                     @endif
 
-                                    @if ($topic['status'] == -1)
+                                    <!-- @if ($topic['status'] == -1)
                                     <a href="/testIndex/{{ $topic['topics_id'] }}" class="btn btn-xs btn-primary hide">
                                     开始
                                     </a>
                                     @endif -->
                                 </td>
                             </tr>
+                            @endif
                         @endforeach
                     @else
                         <tr>

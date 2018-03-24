@@ -217,6 +217,7 @@ class TopicsController extends Controller
         $quizDatas = QuizLog::where('user_id', $user->id)->where('is_finish', 0)->get();
         // var_dump($user->id);
         $topics = [];
+        $noQuiz = 0;
         foreach ($quizDatas as $key => $quizData) {
             
             $topic = Topic::where('id', $quizData->topics_id)->first();
@@ -228,23 +229,39 @@ class TopicsController extends Controller
             $topics[$key]['quiz_time'] = $topic->quiz_time;
             $topics[$key]['start_time'] = $topic->start_time;
             $topics[$key]['status'] = $this->getQuizStatus($topic->start_time, $topic->quiz_time);
+            if ($topics[$key]['status'] >= 0) {
+                $noQuiz = 1;
+            }
+
         }
         // var_dump($topics);
+        // var_dump($noQuiz);
         // die();
-        return view('tests.show', compact('topics'));
+        return view('tests.show', compact('topics', 'noQuiz'));
     }
 
     public function getQuizStatus($startTime, $quizTime)
     {
-        $currrent = Carbon::now();
-        $start = new Carbon($startTime);
-        $end = $start->addMinutes(intval($quizTime));
+        $currrent = Carbon::now('Asia/Shanghai');
+        $start = new Carbon($startTime, 'Asia/Shanghai');
+        $end = new Carbon($startTime, 'Asia/Shanghai');
+        $end = $end->addMinutes(intval($quizTime));
 
-        if ($currrent->lt($start)) return 0;
+        $currrent_time = $currrent->timestamp;
+        $start_time = $start->timestamp;
+        $end_time = $end->timestamp;
+        // 0 时间未到
+        if ($currrent_time-$start_time < 0) { // false 
+            return 0;
+        }
 
-        if ($currrent->gte($start) && $currrent->lt($end)) return 1;
+        // if ($currrent->gte($start) && $currrent->lt($end)) { // 大于 gt 小于 lt
+        if ($currrent_time-$start_time > 0 && $currrent_time-$end_time < 0) {
+            var_dump($currrent_time-$start_time > 0 && $currrent_time-$end_time < 0);
+            return 1;
+        }
 
-        if ($currrent->gte($end)) return -1;
+        if ($currrent_time-$end_time > 0) return -1;
     }
 
     public function resetQuiz(Request $request)

@@ -68,4 +68,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/mult_questions_options_mass_destroy', ['uses' => 'QuestionsOptionsController@deleteJudge', 'as' => 'questions_options.deleteJudge']);
 
     Route::post('reset', 'TopicsController@resetQuiz');
+
+    Route::get('/user/show', 'UsersController@perShow');
+    Route::get('/user/edit', 'UsersController@perEdit');
+    Route::post('/user/update', ['uses' => 'UsersController@perUpdate', 'as' => 'users.perupdate']);
 });
