@@ -117,17 +117,19 @@ class TopicsController extends Controller
 
         $testers = $request->input('tester');
         // 新增的考试者     
-        foreach ($testers as $tester) {
-            $quizLog = QuizLog::where('user_id', intval($tester))->where('topics_id', $id)->first();
-            $user = User::where('id', intval($tester))->first();
-            if (!($quizLog instanceof QuizLog)) {
-                QuizLog::create([
-                    'user_id'   => intval($tester),
-                    'topics_id' => $id,
-                    'is_finish' => 0,
-                    'title'     => $request->input('title'),
-                    'username'  => $user->name,
-                ]);
+        if ($testers) {
+            foreach ($testers as $tester) {
+                $quizLog = QuizLog::where('user_id', intval($tester))->where('topics_id', $id)->first();
+                $user = User::where('id', intval($tester))->first();
+                if (!($quizLog instanceof QuizLog)) {
+                    QuizLog::create([
+                        'user_id'   => intval($tester),
+                        'topics_id' => $id,
+                        'is_finish' => 0,
+                        'title'     => $request->input('title'),
+                        'username'  => $user->name,
+                    ]);
+                }
             }
         }
         // 对比提交上来的参试者与考试记录的数量做对比
@@ -140,11 +142,13 @@ class TopicsController extends Controller
                 'logMode' => $thisQuiztester,
                 'is_join' => false,
             ];
-            foreach ($testers as $tester) {
-                if ($thisQuiztester->user_id == intval($tester)) {
-                    $data[$index]['is_join'] = true;
+            // if ($testers) {
+                foreach ($testers as $tester) {
+                    if ($thisQuiztester->user_id == intval($tester)) {
+                        $data[$index]['is_join'] = true;
+                    }
                 }
-            }
+            // }
         }
         foreach ($data as $index => $key) {
             if (!$key['is_join']) {

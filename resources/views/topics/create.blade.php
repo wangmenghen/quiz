@@ -40,12 +40,16 @@
                             minDate:'%y-%M-%d'
                         })"/>
                 </div>
-                <div class="col-xs-12 form-group"><i class="fa fa-users"></i><label class="" for="">选定参试人员</label></div>
+                <div class="col-xs-12 form-group">
+                    <i class="fa fa-users"></i>
+                    <label class="" for="">选定参试人员</label>
+                    <input type="checkbox" id="allCheck" class="allCheck" name="selectall">全选
+                </div>
                 <div class="col-xs-12 form-group">  
                     @foreach ($users as $user)
                         <div class="col-md-2">
                             <span class="input-group-addon">
-                                <input type="checkbox" value="{{$user->id}}" name="tester[]">
+                                <input type="checkbox" class="tester" value="{{$user->id}}" name="tester[]">
                                 <span>{{$user->name}}</span>
                             </span>
                             
@@ -59,5 +63,26 @@
 
     {!! Form::submit(trans('quickadmin.save'), ['class' => 'btn btn-danger']) !!}
     {!! Form::close() !!}
+    <script>
+    $(document).ready(function(){
+        console.log('123')
+        $("#allcheck").on('click', function() { 
+            console.log("123456"); 
+        });
+        console.log('123456789')
+        // document.getElementById('allCheck').onclick = function ( ) {   alert(this.checked) }
+        $('input[name="selectall"]').click(function(){
+            if($(this).is(':checked')){  
+                $('input[name="tester[]"]').each(function(){  
+                    $(this).prop("checked",true);  
+                });
+            }else{  
+                $('input[name="tester[]"]').each(function(){  
+                    $(this).removeAttr("checked",false);  
+                });
+            }  
+        })
+    })
+    </script>
 @stop
 

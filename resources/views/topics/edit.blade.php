@@ -41,7 +41,10 @@
                             minDate:'%y-%M-%d'
                         })"/>
                 </div>
-                <div class="col-xs-12 form-group"><i class="fa fa-users"></i><label class="" for="">选定参试人员</label></div>
+                <div class="col-xs-12 form-group"><i class="fa fa-users">
+                    </i><label class="" for="">选定参试人员</label>
+                    <input type="checkbox" id="allCheck" class="allCheck" name="selectall">全选
+                </div>
                 <div class="col-xs-12 form-group">  
                     @foreach ($users as $user)
                         <div class="col-md-2">
@@ -79,6 +82,17 @@
                     alert('ok!');
                 });
             });
+            $('input[name="selectall"]').click(function(){
+                if($(this).is(':checked')){  
+                    $('input[name="tester[]"]').each(function(){  
+                        $(this).prop("checked",true);  
+                    });
+                }else{  
+                    $('input[name="tester[]"]').each(function(){  
+                        $(this).removeAttr("checked",false);  
+                    });
+                }  
+            })
         })
     </script>
 @stop
